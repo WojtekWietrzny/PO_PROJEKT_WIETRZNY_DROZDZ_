@@ -80,13 +80,21 @@ public void addJungle(Vector2d position){
     public void reproduce(){
         for (Animal animal : this.animals){
             ArrayList<Animal> animalsInCurrentCell = this.elements.get(animal.getPosition()).getAnimals();
+            ArrayList<Animal> children = new ArrayList<>();
             if (animalsInCurrentCell.size() > 1){
                 for (int i=0; i<animalsInCurrentCell.size(); i++){
-                    if (animalsInCurrentCell.get(i).getEnergy() >= this.energyToReproduce &&
-                            animalsInCurrentCell.get((i+1)%animalsInCurrentCell.size()).getEnergy() >= this.energyToReproduce){
-
+                    Animal potentialParent1 = animalsInCurrentCell.get(i);
+                    Animal potentialParent2 = animalsInCurrentCell.get((i+1)%animalsInCurrentCell.size());
+                    if( potentialParent1.getEnergy() >= energyToReproduce && potentialParent2.getEnergy() >= energyToReproduce){
+                        potentialParent1.reduceEnergy(energyToReproduce);
+                        potentialParent2.reduceEnergy(energyToReproduce);
+                        Animal child = potentialParent1.createChild(potentialParent2);
+                        children.add(child);
                     }
                 }
+            }
+            for (Animal child : children){
+                place(child);
             }
         }
 
