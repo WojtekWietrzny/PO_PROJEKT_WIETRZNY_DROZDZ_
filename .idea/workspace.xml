@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="AbstractWorldMap in the making">
-      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Gene.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Gene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/WorldElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/WorldElement.java" afterDir="false" />
-    </list>
+    <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="followup work on AbstractWorldMap" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +103,7 @@
       <workItem from="1704411520992" duration="381000" />
       <workItem from="1704412476086" duration="10000" />
       <workItem from="1704412573982" duration="5977000" />
-      <workItem from="1704459478478" duration="6146000" />
+      <workItem from="1704459478478" duration="6192000" />
     </task>
     <task id="LOCAL-00001" summary="cleaned the structure, added AbstractWorldMap">
       <option name="closed" value="true" />
@@ -128,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704421035433</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="followup work on AbstractWorldMap">
+      <option name="closed" value="true" />
+      <created>1704466075057</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704466075057</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +149,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="cleaned the structure, added AbstractWorldMap" />
     <MESSAGE value="AbstractWorldMap in the making" />
-    <option name="LAST_COMMIT_MESSAGE" value="AbstractWorldMap in the making" />
+    <MESSAGE value="followup work on AbstractWorldMap" />
+    <option name="LAST_COMMIT_MESSAGE" value="followup work on AbstractWorldMap" />
   </component>
 </project>
