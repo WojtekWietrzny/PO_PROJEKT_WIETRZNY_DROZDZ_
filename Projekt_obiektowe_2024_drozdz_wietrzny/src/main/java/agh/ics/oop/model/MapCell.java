@@ -3,13 +3,15 @@ package agh.ics.oop.model;
 import java.util.ArrayList;
 
 public class MapCell {
-    private final ArrayList<WorldElement> objects;
+    private final ArrayList<WorldElement> objects; // Czy będziemy tu trzymać cokolwiek innego niż zwierzaki?
+    private final ArrayList<Animal> animals;
     private boolean grass = false;
     private boolean jungle = false;
     private int deathCounter = 0;
 
     public MapCell(){
         this.objects = new ArrayList<>();
+        this.animals = new ArrayList<>();
     }
 
     public boolean isGrassPresent(){
@@ -43,12 +45,21 @@ public class MapCell {
     public void removeObject(WorldElement object){
         objects.remove(object);
     }
-    public void animalDied(WorldElement object){
-        removeObject(object);
+    public void addAnimal(Animal animal){
+        this.animals.add(animal);
+        this.objects.add(animal);
+    }
+    public void removeAnimal(Animal animal){
+        this.objects.remove(animal);
+        this.animals.remove(animal);
+    }
+    public void animalDied(Animal animal){
+        removeAnimal(animal);
         upDeathCounter();
     }
 
     public ArrayList<WorldElement> getObjects() {
         return objects;
     }
+    public ArrayList<Animal> getAnimals(){ return this.animals; }
 }

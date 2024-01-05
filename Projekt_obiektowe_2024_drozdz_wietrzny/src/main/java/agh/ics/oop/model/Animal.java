@@ -52,6 +52,7 @@ public class Animal implements WorldElement {
     public int getEnergy() {
         return energy;
     }
+    public void addEnergy(int value) { this.energy += value; }
 
     public void move() {
         this.orientation = this.orientation.rotate(this.gene.getCurrent());
