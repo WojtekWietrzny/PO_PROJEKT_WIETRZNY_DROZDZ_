@@ -1,6 +1,4 @@
-package agh.ics.oop;
-
-import agh.ics.oop.model.MoveDirection;
+package agh.ics.oop.model;
 
 import java.util.List;
 
@@ -26,6 +24,7 @@ public interface WorldMap extends MoveValidator {
      * If the move is not possible, this method has no effect.
      */
     void move(Animal animal, MoveDirection direction);
+    //czy to na pewno jest potrzebne?
 
     /**
      * Return true if given position on the map is occupied. Should not be
