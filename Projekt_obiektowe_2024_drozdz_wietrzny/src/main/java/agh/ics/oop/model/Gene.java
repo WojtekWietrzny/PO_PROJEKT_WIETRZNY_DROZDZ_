@@ -14,7 +14,7 @@ public class Gene {
 
     public Integer getCurrent(){
         Integer current = dna.get(index);
-        //this.advance();
+//        this.advance();
         return current;
     }
 
