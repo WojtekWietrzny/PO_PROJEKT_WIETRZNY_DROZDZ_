@@ -9,7 +9,12 @@ public abstract class AbstractWorldMap implements WorldMap{
 
     private final Map<Vector2d, MapCell> elements = new HashMap<>();
     private final ArrayList<Animal> animals = new ArrayList<>();
-    private int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?
+    private final ArrayList<Vector2d> allPositions = new ArrayList<>();
+    private final ArrayList<Vector2d> emptyPositionsPreferred = new ArrayList<>();
+    private final ArrayList<Vector2d> emptyPositionsNotPreffered = new ArrayList<>();
+    private int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
+    // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
+    //ale faktycznie do kodu w pętli lepiej używać size
     private final int energyToReproduce = 1;
     private final int grassNutritionalValue = 3;
     private final Boundary bounds;
@@ -28,6 +33,7 @@ public abstract class AbstractWorldMap implements WorldMap{
                 Vector2d position = new Vector2d(i,j);
                 MapCell cell = new MapCell();
                 elements.put(position, cell);
+                allPositions.add(position);
             }
         }
     }
@@ -46,15 +52,15 @@ public abstract class AbstractWorldMap implements WorldMap{
             animals.add(animal);
         }
     }
-public void addGrass(Vector2d position){
-        MapCell cell = elements.get(position);
-        cell.growGrass();
-}
+    public void addGrass(Vector2d position){
+            MapCell cell = elements.get(position);
+            cell.growGrass();
+    }
 
-public void addJungle(Vector2d position){
-        MapCell cell = elements.get(position);
-        cell.addJungle();
-}
+    public void addJungle(Vector2d position){
+            MapCell cell = elements.get(position);
+            cell.addJungle();
+    }
 
     public void removeDead(){
         ArrayList<Animal> animalsToRemove = new ArrayList<>();
@@ -99,8 +105,20 @@ public void addJungle(Vector2d position){
         }
 
     }
-    public void growPlants(){
+    public Vector2d randomNextPosition(){
 
+    }
+    public boolean freePlaces(){
+            return  !emptyPositionsNotPreffered.isEmpty() || !emptyPositionsPreferred.isEmpty();
+    }
+
+
+    public void growGrass(int grassDaily){
+        for(int i =0; i < grassDaily; i++){
+            if(freePlaces()){
+
+            }
+        }
     }
 
     @Override

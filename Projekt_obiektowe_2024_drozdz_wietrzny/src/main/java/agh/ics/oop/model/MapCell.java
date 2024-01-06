@@ -3,10 +3,11 @@ package agh.ics.oop.model;
 import java.util.ArrayList;
 
 public class MapCell {
-    private final ArrayList<WorldElement> objects; // Czy będziemy tu trzymać cokolwiek innego niż zwierzaki?
+    private final ArrayList<WorldElement> objects; // Czy będziemy tu trzymać cokolwiek innego niż zwierzaki?, wsm chyba nie, można faktycznie zrobić z tego animal
     private final ArrayList<Animal> animals;
     private boolean grass = false;
     private boolean jungle = false;
+    private
     private int deathCounter = 0;
 
     public MapCell(){
