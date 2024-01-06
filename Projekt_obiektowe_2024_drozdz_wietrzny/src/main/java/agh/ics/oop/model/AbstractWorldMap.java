@@ -63,6 +63,12 @@ public abstract class AbstractWorldMap implements WorldMap{
             cell.addJungle();
     }
 
+    public void reduceAnimalEnergy(){
+        for (Animal animal : this.animals){
+            animal.reduceEnergy(1);
+        }
+    }
+
     public void removeDead(){
         ArrayList<Animal> animalsToRemove = new ArrayList<>();
         for (Animal animal : this.animals){
