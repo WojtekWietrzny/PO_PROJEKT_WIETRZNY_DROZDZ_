@@ -84,7 +84,6 @@ public abstract class AbstractWorldMap implements WorldMap{
     public void addGrass(Vector2d position){
             MapCell cell = elements.get(position);
             cell.growGrass();
-
     }
 
     public void reduceAnimalEnergy(){

@@ -36,6 +36,7 @@ public class Simulation implements Runnable{
             this.worldMap.reduceAnimalEnergy();
             this.worldMap.removeDead();
             this.worldMap.advanceAnimals();
+            this.worldMap.eat();
             this.worldMap.reproduce();
             this.worldMap.growGrass(simulationParameters.plantGrowthRate());
         }
