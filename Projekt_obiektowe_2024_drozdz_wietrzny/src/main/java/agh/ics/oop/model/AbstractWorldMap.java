@@ -37,6 +37,7 @@ public abstract class AbstractWorldMap implements WorldMap{
                 allPositions.add(position);
             }
         }
+
     }
 
 
