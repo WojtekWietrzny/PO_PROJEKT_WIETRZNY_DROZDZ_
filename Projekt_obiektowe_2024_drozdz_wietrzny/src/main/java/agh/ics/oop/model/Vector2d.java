@@ -1,4 +1,6 @@
-package agh.ics.oop;
+package agh.ics.oop.model;
+
+import agh.ics.oop.model.MapDirection;
 
 import java.util.Objects;
 
@@ -81,4 +83,5 @@ public class Vector2d {
         System.out.println(direction1.previous().toString());
         System.out.println(direction1.toUnitVector().toString());
     }
+    //nie wiem co to tu robi, ale przynajmniej widać, że te metody działają
 }

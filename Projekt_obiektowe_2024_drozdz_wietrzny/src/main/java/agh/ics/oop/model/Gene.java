@@ -1,9 +1,8 @@
-package agh.ics.oop;
+package agh.ics.oop.model;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static agh.ics.oop.World.CRAZY;
 
 public class Gene {
     private ArrayList<Integer> dna = new ArrayList<Integer>();
@@ -15,7 +14,7 @@ public class Gene {
 
     public Integer getCurrent(){
         Integer current = dna.get(index);
-        this.advance();
+//        this.advance();
         return current;
     }
 
@@ -35,7 +34,7 @@ public class Gene {
         }
     }
 
-    private void advance(){
+/*    private void advance(){
         if (CRAZY){
             Random random = new Random();
             int actual = random.nextInt(100);
@@ -49,7 +48,7 @@ public class Gene {
         else{
             index = (index + 1) % dna.size();
         }
-    }
+    }*/
     public Gene createChild(Gene other, int ownEnergy, int otherEnergy){
         Random random = new Random();
         Gene dominantGene;
