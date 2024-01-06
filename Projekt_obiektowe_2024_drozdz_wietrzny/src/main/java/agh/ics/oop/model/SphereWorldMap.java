@@ -7,8 +7,8 @@ import java.util.List;
 public class SphereWorldMap extends AbstractWorldMap {
 
 
-    public SphereWorldMap(int width, int height, BehaviourType behaviourType) {
-        super(width, height, behaviourType);
+    public SphereWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize) {
+        super(width, height, behaviourType, genomeSize);
     }
 
     @Override

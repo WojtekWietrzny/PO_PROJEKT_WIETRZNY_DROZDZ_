@@ -20,9 +20,9 @@ public class SimulationEngine implements Runnable{
         // + statystyki
 
         if (this.simulationParameters.mapType() == MapType.SphereMap){
-            this.worldMap = new SphereWorldMap(width, height, simulationParameters.behaviourType());
+            this.worldMap = new SphereWorldMap(width, height, simulationParameters.behaviourType(), simulationParameters.genomeSize());
         }else{
-            this.worldMap = new TunnelWorldMap(width, height, simulationParameters.behaviourType());
+            this.worldMap = new TunnelWorldMap(width, height, simulationParameters.behaviourType(), simulationParameters.genomeSize());
         }
 
         this.worldMap.generateAnimals(simulationParameters.startingAnimalAmount());

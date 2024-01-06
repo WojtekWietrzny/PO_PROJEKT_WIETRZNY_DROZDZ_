@@ -4,8 +4,8 @@ import java.util.List;
 
 public class TunnelWorldMap extends AbstractWorldMap{
 
-    public TunnelWorldMap(int width, int height, BehaviourType behaviourType) {
-        super(width, height, behaviourType);
+    public TunnelWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize) {
+        super(width, height, behaviourType, genomeSize);
     }
 
     @Override
