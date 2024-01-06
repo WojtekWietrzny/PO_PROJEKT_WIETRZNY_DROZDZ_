@@ -68,6 +68,7 @@ public class Animal implements WorldElement {
         }
     }
 
+
     public Animal createChild(Animal other){
         Gene childGene = this.gene.createChild(other.getGene(), this.energy, other.getEnergy());
         Vector2d childPosition = this.position;
