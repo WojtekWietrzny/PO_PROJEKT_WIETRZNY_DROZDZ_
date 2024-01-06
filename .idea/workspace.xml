@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="reproduce fix">
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" afterDir="false" />
+    <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="mapCell fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +22,24 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="mapy" />
+        <entry key="$PROJECT_DIR$" value="skok_w_bok" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "WojtekWietrzny"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="353b76ff-7e57-4bd5-af87-d6bca1c7784d" />
+        <option name="url" value="https://github.com/WojtekWietrzny/PO_PROJEKT_WIETRZNY_DROZDZ_" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -45,7 +58,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "skok__w__bok",
+    "git-widget-placeholder": "Wojtek__branch",
     "last_opened_file_path": "C:/Users/wojci/Git repositories/PO_PROJEKT_WIETRZNY_DROZDZ_",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,7 +93,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704565270155</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mapCell fix">
+      <option name="closed" value="true" />
+      <created>1704565798230</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704565798230</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="kolejne zmiany" />
     <MESSAGE value="reproduce fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="reproduce fix" />
+    <MESSAGE value="mapCell fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="mapCell fix" />
   </component>
 </project>
