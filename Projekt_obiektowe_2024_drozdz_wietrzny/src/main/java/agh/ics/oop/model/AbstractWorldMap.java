@@ -18,15 +18,18 @@ public abstract class AbstractWorldMap implements WorldMap{
     private final int energyToReproduce = 1;
     private final int energyConsumedByReproduction = 2;
     private final int grassNutritionalValue = 3;
+    private final BehaviourType behaviourType;
+    private final int genomeSize;
     private final Boundary bounds;
 
-    public AbstractWorldMap(int width, int height){
+    public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){
         Vector2d lowerLeft = new Vector2d(0,0);
         Vector2d upperRight = new Vector2d(width, height);
         Boundary mapBounds = new Boundary(lowerLeft, upperRight);
         this.bounds = mapBounds;
+        this.behaviourType = behaviourType;
+        this.genomeSize = genomeSize;
     }
-
 
     private void startMap(int width, int height){
         for(int i = 0; i < width;i++){
@@ -37,9 +40,24 @@ public abstract class AbstractWorldMap implements WorldMap{
                 allPositions.add(position);
             }
         }
-
     }
 
+    public void generateAnimals(int amount){
+        Random random = new Random();
+        int x, y;
+        for(int i=0; i<amount; i++){
+            x = random.nextInt(this.bounds.upperRight().getX() - this.bounds.lowerLeft().getX()) + this.bounds.lowerLeft().getX();
+            y = random.nextInt(this.bounds.upperRight().getY() - this.bounds.lowerLeft().getY()) + this.bounds.lowerLeft().getY();
+            Animal animal = new Animal(this, new Vector2d(x, y), Gene.generateRandomGene(this.genomeSize));
+            place(animal);
+        }
+    }
+
+    public void advanceAnimals(){
+        for (Animal animal : this.animals){
+            animal.move();
+        }
+    }
 
     public void move(WorldElement animal){
         for (int i = 0; i < animalsQuantity; i++){
@@ -67,6 +85,12 @@ public abstract class AbstractWorldMap implements WorldMap{
     public void reduceAnimalEnergy(){
         for (Animal animal : this.animals){
             animal.reduceEnergy(1);
+        }
+    }
+
+    public void setAnimalEnergy(int energy){
+        for (Animal animal : this.animals){
+            animal.setEnergy(energy);
         }
     }
 

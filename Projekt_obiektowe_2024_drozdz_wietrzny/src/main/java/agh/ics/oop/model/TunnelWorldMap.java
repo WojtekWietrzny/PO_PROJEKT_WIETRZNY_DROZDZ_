@@ -3,8 +3,9 @@ package agh.ics.oop.model;
 import java.util.List;
 
 public class TunnelWorldMap extends AbstractWorldMap{
-    public TunnelWorldMap(int width, int height) {
-        super(width, height);
+
+    public TunnelWorldMap(int width, int height, BehaviourType behaviourType) {
+        super(width, height, behaviourType);
     }
 
     @Override

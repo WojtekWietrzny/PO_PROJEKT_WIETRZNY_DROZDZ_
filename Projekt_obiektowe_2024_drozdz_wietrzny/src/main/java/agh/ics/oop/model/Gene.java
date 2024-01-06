@@ -13,6 +13,12 @@ public class Gene {
     }
     public ArrayList<Integer> getDna() { return this.dna; }
 
+    public static Gene generateRandomGene(int size){
+        Gene newGene = new Gene();
+        newGene.generateRandom(size);
+        return newGene;
+    }
+
     public Integer getCurrent(){
         Integer current = dna.get(index);
 //        this.advance();

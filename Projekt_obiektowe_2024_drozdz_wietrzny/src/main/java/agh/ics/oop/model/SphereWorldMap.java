@@ -5,8 +5,10 @@ import agh.ics.oop.model.*;
 import java.util.List;
 
 public class SphereWorldMap extends AbstractWorldMap {
-    public SphereWorldMap(int width, int height) {
-        super(width, height);
+
+
+    public SphereWorldMap(int width, int height, BehaviourType behaviourType) {
+        super(width, height, behaviourType);
     }
 
     @Override
