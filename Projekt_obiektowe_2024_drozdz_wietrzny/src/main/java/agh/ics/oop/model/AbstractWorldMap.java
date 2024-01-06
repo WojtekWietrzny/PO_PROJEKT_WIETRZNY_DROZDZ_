@@ -194,7 +194,9 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
-
+    public int getAnimalsQuantity(){
+        return animalsQuantity;
+    }
 
 
     public ArrayList<Vector2d> getEmptyPositionsNotPreferred() {
