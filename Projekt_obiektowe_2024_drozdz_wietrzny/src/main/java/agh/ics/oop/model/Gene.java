@@ -6,26 +6,32 @@ import java.util.Random;
 
 public class Gene {
     private ArrayList<Integer> dna = new ArrayList<Integer>();
+    private final BehaviourType behaviourType;
     private int index = 0;
+
+
+    public Gene(int size, BehaviourType behaviourType){
+        generateRandomDna(size);
+        this.behaviourType = behaviourType;
+    }
 
     public void setDna(ArrayList<Integer> dna) {
         this.dna = dna;
     }
     public ArrayList<Integer> getDna() { return this.dna; }
 
-    public static Gene generateRandomGene(int size){
-        Gene newGene = new Gene();
-        newGene.generateRandom(size);
+    public static Gene generateRandomGene(int size, BehaviourType behaviourType){
+        Gene newGene = new Gene(size, behaviourType);
         return newGene;
     }
 
     public Integer getCurrent(){
         Integer current = dna.get(index);
-//        this.advance();
+        this.advance();
         return current;
     }
 
-    public void generateRandom(int size){
+    public void generateRandomDna(int size){
         Random random = new Random();
         for(int i=0; i<size; i++){
             dna.add(random.nextInt(8));
@@ -41,8 +47,8 @@ public class Gene {
         }
     }
 
-/*    private void advance(){
-        if (CRAZY){
+    private void advance(){
+        if (this.behaviourType == BehaviourType.BitofCraziness){
             Random random = new Random();
             int actual = random.nextInt(100);
             if (actual < 20){
@@ -55,12 +61,13 @@ public class Gene {
         else{
             index = (index + 1) % dna.size();
         }
-    }*/
+    }
+
     public Gene createChild(Gene other, int ownEnergy, int otherEnergy){
         Random random = new Random();
         Gene dominantGene;
         Gene recesiveGene;
-        Gene childGene = new Gene();
+        Gene childGene = new Gene(this.dna.size(), this.behaviourType);
         ArrayList<Integer> newDna = new ArrayList<>();
 
         int percentOwnEnergy = (ownEnergy / (ownEnergy + otherEnergy) * this.dna.size());
@@ -75,8 +82,8 @@ public class Gene {
         }
 
         int side = random.nextInt(2);
+        int i;
         if (side == 0){ //Bierzemy lewą dominującego
-            int i = 0;
             for(i=0; i < percentOwnEnergy; i++)
             {
                 newDna.add(dominantGene.dna.get(i));
@@ -85,7 +92,6 @@ public class Gene {
                 i += 1;
             }
         }else{      //Bierzemy prawą stronę
-            int i=0;
             for(i=0; i < percentOwnEnergy; i++)
             {
                 newDna.add(dominantGene.dna.get(dominantGene.dna.size() - 1 - i));

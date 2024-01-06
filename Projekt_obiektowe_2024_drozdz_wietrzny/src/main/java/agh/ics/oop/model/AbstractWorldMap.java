@@ -56,7 +56,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         for(int i=0; i<amount; i++){
             x = random.nextInt(this.bounds.upperRight().getX() - this.bounds.lowerLeft().getX()) + this.bounds.lowerLeft().getX();
             y = random.nextInt(this.bounds.upperRight().getY() - this.bounds.lowerLeft().getY()) + this.bounds.lowerLeft().getY();
-            Animal animal = new Animal(this, new Vector2d(x, y), Gene.generateRandomGene(this.genomeSize));
+            Animal animal = new Animal(this, new Vector2d(x, y), Gene.generateRandomGene(this.genomeSize, this.behaviourType));
             place(animal);
         }
     }

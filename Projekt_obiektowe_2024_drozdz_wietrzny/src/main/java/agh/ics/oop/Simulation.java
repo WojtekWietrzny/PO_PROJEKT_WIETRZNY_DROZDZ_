@@ -27,6 +27,7 @@ public class Simulation implements Runnable{
 
         this.worldMap.generateAnimals(simulationParameters.startingAnimalAmount());
         this.worldMap.setAnimalEnergy(simulationParameters.startingAnimalEnergy());
+        this.worldMap.growGrass(simulationParameters.startingPlantAmount());
 
     }
 
