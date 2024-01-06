@@ -32,10 +32,12 @@ public class SimulationEngine implements Runnable{
 
     @Override
     public void run() {
-        this.worldMap.reduceAnimalEnergy();
-        this.worldMap.removeDead();
-        this.worldMap.advanceAnimals();
-        this.worldMap.reproduce();
-        this.worldMap.growGrass(simulationParameters.plantGrowthRate());
+        while (this.worldMap.getAnimalsQuantity() > 0) {
+            this.worldMap.reduceAnimalEnergy();
+            this.worldMap.removeDead();
+            this.worldMap.advanceAnimals();
+            this.worldMap.reproduce();
+            this.worldMap.growGrass(simulationParameters.plantGrowthRate());
+        }
     }
 }
