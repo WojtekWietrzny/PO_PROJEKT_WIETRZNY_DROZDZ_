@@ -7,7 +7,7 @@ public class MapCell {
     private final ArrayList<Animal> animals;
     private boolean grass = false;
     private boolean jungle = false;
-    private
+    private boolean
     private int deathCounter = 0;
 
     public MapCell(){

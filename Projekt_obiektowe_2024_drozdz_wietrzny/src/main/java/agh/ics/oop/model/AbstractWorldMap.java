@@ -16,6 +16,7 @@ public abstract class AbstractWorldMap implements WorldMap{
     // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
     //ale faktycznie do kodu w pętli lepiej używać size
     private final int energyToReproduce = 1;
+    private final int energyConsumedByReproduction = 2;
     private final int grassNutritionalValue = 3;
     private final Boundary bounds;
 
@@ -92,8 +93,8 @@ public abstract class AbstractWorldMap implements WorldMap{
                     Animal potentialParent1 = animalsInCurrentCell.get(i);
                     Animal potentialParent2 = animalsInCurrentCell.get((i+1)%animalsInCurrentCell.size());
                     if( potentialParent1.getEnergy() >= energyToReproduce && potentialParent2.getEnergy() >= energyToReproduce){
-                        potentialParent1.reduceEnergy(energyToReproduce);
-                        potentialParent2.reduceEnergy(energyToReproduce);
+                        potentialParent1.reduceEnergy(energyConsumedByReproduction);
+                        potentialParent2.reduceEnergy(energyConsumedByReproduction);
                         Animal child = potentialParent1.createChild(potentialParent2);
                         children.add(child);
                     }
