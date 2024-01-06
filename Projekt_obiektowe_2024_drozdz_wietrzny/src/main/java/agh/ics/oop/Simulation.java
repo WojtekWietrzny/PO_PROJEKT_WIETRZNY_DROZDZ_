@@ -2,15 +2,15 @@ package agh.ics.oop;
 
 import agh.ics.oop.model.*;
 
-public class SimulationEngine implements Runnable{
+public class Simulation implements Runnable{
     private int currentDay;
     private SimulationParameters simulationParameters;
     private AbstractWorldMap worldMap;
 
-    public SimulationEngine(int width, int height, MapType mapType, BehaviourType behaviourType, int startingPlantAmount,
-                            int plantGrowthRate, int startingAnimalAmount, int startingAnimalEnergy,
-                            int energyToReproduce, int energyConsumedByReproduction, int minMutations,
-                            int maxMutations, int genomeSize){
+    public Simulation(int width, int height, MapType mapType, BehaviourType behaviourType, int startingPlantAmount,
+                      int plantGrowthRate, int startingAnimalAmount, int startingAnimalEnergy,
+                      int energyToReproduce, int energyConsumedByReproduction, int minMutations,
+                      int maxMutations, int genomeSize){
         this.currentDay = 0;
         this.simulationParameters = new SimulationParameters(mapType, behaviourType, startingPlantAmount,
                 plantGrowthRate, startingAnimalAmount, startingAnimalEnergy, energyToReproduce,
