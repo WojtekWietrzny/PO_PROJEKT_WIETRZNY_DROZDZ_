@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="reproduce fix">
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/BehaviourType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SimulationEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SimulationEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -45,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "skok__w__bok",
+    "git-widget-placeholder": "Simulation",
     "last_opened_file_path": "C:/Users/wojci/Git repositories/PO_PROJEKT_WIETRZNY_DROZDZ_",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
