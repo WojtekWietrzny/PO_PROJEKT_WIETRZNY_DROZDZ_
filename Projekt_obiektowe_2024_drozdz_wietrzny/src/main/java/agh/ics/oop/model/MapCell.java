@@ -6,8 +6,9 @@ public class MapCell {
     private final ArrayList<WorldElement> objects; // Czy będziemy tu trzymać cokolwiek innego niż zwierzaki?, wsm chyba nie, można faktycznie zrobić z tego animal
     private final ArrayList<Animal> animals;
     private boolean grass = false;
-    private boolean jungle = false;
-    private boolean
+    private boolean tunelStart = false;
+    private boolean tunelEnd = false;
+
     private int deathCounter = 0;
 
     public MapCell(){
