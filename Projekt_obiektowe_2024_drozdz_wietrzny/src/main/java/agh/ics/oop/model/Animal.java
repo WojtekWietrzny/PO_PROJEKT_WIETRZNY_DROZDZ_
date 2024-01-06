@@ -2,6 +2,9 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.model.Vector2d;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Animal implements WorldElement {
     private MapDirection orientation;
     private Vector2d position;
@@ -52,6 +55,9 @@ public class Animal implements WorldElement {
     public int getEnergy() {
         return energy;
     }
+    public void addEnergy(int value) { this.energy += value; }
+    public void reduceEnergy(int value){ this.energy -= value; }
+    public Gene getGene() { return this.gene; }
 
     public void move() {
         this.orientation = this.orientation.rotate(this.gene.getCurrent());
@@ -60,5 +66,12 @@ public class Animal implements WorldElement {
         if (this.map.canMoveTo(newPosition)){
             this.position = newPosition;
         }
+    }
+
+    public Animal createChild(Animal other){
+        Gene childGene = this.gene.createChild(other.getGene(), this.energy, other.getEnergy());
+        Vector2d childPosition = this.position;
+        WorldMap childMap = this.map;
+        return new Animal(childMap, childPosition, childGene);
     }
 }

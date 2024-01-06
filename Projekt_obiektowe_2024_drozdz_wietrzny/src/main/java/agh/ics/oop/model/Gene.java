@@ -11,6 +11,7 @@ public class Gene {
     public void setDna(ArrayList<Integer> dna) {
         this.dna = dna;
     }
+    public ArrayList<Integer> getDna() { return this.dna; }
 
     public Integer getCurrent(){
         Integer current = dna.get(index);
