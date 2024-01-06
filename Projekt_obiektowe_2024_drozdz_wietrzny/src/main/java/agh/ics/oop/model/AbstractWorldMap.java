@@ -9,9 +9,11 @@ public abstract class AbstractWorldMap implements WorldMap{
 
     private final Map<Vector2d, MapCell> elements = new HashMap<>();
     private final ArrayList<Animal> animals = new ArrayList<>();
-    private final ArrayList<Vector2d> allPositions = new ArrayList<>();
-    private final ArrayList<Vector2d> emptyPositionsPreferred = new ArrayList<>();
-    private final ArrayList<Vector2d> emptyPositionsNotPreffered = new ArrayList<>();
+    private ArrayList<Vector2d> allPositions = new ArrayList<>();
+    private ArrayList<Vector2d> emptyPositionsPreferred = new ArrayList<>();
+    private ArrayList<Vector2d> emptyPositionsNotPreferred = new ArrayList<>();
+    private ArrayList<Vector2d> emptyPositionsPreferredPrototype = new ArrayList<>();
+    private ArrayList<Vector2d> emptyPositionsNotPreferredPrototype = new ArrayList<>();
     private int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
     // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
     //ale faktycznie do kodu w pętli lepiej używać size
@@ -29,6 +31,12 @@ public abstract class AbstractWorldMap implements WorldMap{
         this.bounds = mapBounds;
         this.behaviourType = behaviourType;
         this.genomeSize = genomeSize;
+        float midPoint = Math.round(height/2);
+        allPositions.sort((o1, o2) -> Float.compare(Math.abs(o1.getY() - midPoint), Math.abs(o2.getY() - midPoint)));
+        emptyPositionsPreferred = (ArrayList<Vector2d>) allPositions.subList(0, (int) Math.round(0.2*width*height));
+        emptyPositionsNotPreferred = (ArrayList<Vector2d>) allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
+        emptyPositionsPreferredPrototype = emptyPositionsPreferred;
+        emptyPositionsNotPreferredPrototype = emptyPositionsNotPreferred;
     }
 
     private void startMap(int width, int height){
@@ -59,6 +67,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
+
     public void move(WorldElement animal){
         for (int i = 0; i < animalsQuantity; i++){
 
@@ -75,11 +84,7 @@ public abstract class AbstractWorldMap implements WorldMap{
     public void addGrass(Vector2d position){
             MapCell cell = elements.get(position);
             cell.growGrass();
-    }
 
-    public void addJungle(Vector2d position){
-            MapCell cell = elements.get(position);
-            cell.addJungle();
     }
 
     public void reduceAnimalEnergy(){
@@ -108,9 +113,16 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
     public void eat(){
         for (Animal animal : this.animals){
-            if (this.elements.get(animal.getPosition()).isGrassPresent()){
-                this.elements.get(animal.getPosition()).eatGrass();
+            Vector2d position = animal.getPosition();
+            if (this.elements.get(position).isGrassPresent()){
+                this.elements.get(position).eatGrass();
                 animal.addEnergy(this.grassNutritionalValue);
+                if(emptyPositionsPreferredPrototype.contains(position)){
+                    emptyPositionsPreferred.add(position);
+                }
+                if(emptyPositionsNotPreferredPrototype.contains(position)){
+                    emptyPositionsNotPreferred.add(position);
+                }
             }
         }
 
@@ -127,7 +139,7 @@ public abstract class AbstractWorldMap implements WorldMap{
                         potentialParent1.reduceEnergy(energyConsumedByReproduction);
                         potentialParent2.reduceEnergy(energyConsumedByReproduction);
                         Animal child = potentialParent1.createChild(potentialParent2);
-                        child.setEnergy(energyToReproduce*2);
+                        child.setEnergy(energyConsumedByReproduction*2);
                         children.add(child);
                     }
                 }
@@ -138,26 +150,65 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
 
     }
+    //funkcja odpowiedzialna za losowanie kolejnego pola na trawę
     public Vector2d randomNextPosition(){
+        Random random = new Random();
+        Vector2d position;
+        int number = random.nextInt(100);
+        if (number < 80){
+            if(!emptyPositionsPreferred.isEmpty()) {
+                position = emptyPositionsPreferred.get(random.nextInt(emptyPositionsPreferred.size()));
+                emptyPositionsPreferred.remove(position);
+            }
+            else{
+                position = emptyPositionsNotPreferred.get(random.nextInt(emptyPositionsNotPreferred.size()));
+                emptyPositionsNotPreferred.remove(position);
+            }
+        }
+        else{
+            if(!emptyPositionsNotPreferred.isEmpty()) {
+                position = emptyPositionsNotPreferred.get(random.nextInt(emptyPositionsNotPreferred.size()));
+                emptyPositionsNotPreferred.remove(position);
+            }
+            else{
+                position = emptyPositionsPreferred.get(random.nextInt(emptyPositionsPreferred.size()));
+                emptyPositionsPreferred.remove(position);
+            }
 
+        }
+        return position;
     }
+    //sprawdzanie czy istnieją miejsca na trawę
     public boolean freePlaces(){
-            return  !emptyPositionsNotPreffered.isEmpty() || !emptyPositionsPreferred.isEmpty();
+            return  !emptyPositionsNotPreferred.isEmpty() || !emptyPositionsPreferred.isEmpty();
     }
 
 
+    //wyrastanie określonej ilości trawy - cała 1 faza dnia
     public void growGrass(int grassDaily){
         for(int i =0; i < grassDaily; i++){
             if(freePlaces()){
-
+                Vector2d position = randomNextPosition();
+                addGrass(position);
             }
         }
+    }
+
+
+
+
+    public ArrayList<Vector2d> getEmptyPositionsNotPreferred() {
+        return emptyPositionsNotPreferred;
+    }
+
+    public ArrayList<Vector2d> getEmptyPositionsPreferred() {
+        return emptyPositionsPreferred;
     }
 
     @Override
     public abstract List<Animal> getOrderedAnimals(List<Animal> animals_listed);
 
-    public String toString() {
+    /*public String toString() {
         return new MapVisualiser(this).draw(lowerLeft, upperRight);
-    }
+    }*/
 }

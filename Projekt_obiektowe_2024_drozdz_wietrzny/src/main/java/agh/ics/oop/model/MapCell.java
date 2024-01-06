@@ -16,14 +16,26 @@ public class MapCell {
         this.animals = new ArrayList<>();
     }
 
+    public boolean isTunelStart() {
+        return tunelStart;
+    }
+
+    public void setTunelStart(boolean tunelStart) {
+        this.tunelStart = tunelStart;
+    }
+
+    public void setTunelEnd(boolean tunelEnd) {
+        this.tunelEnd = tunelEnd;
+    }
+
+    public boolean isTunelEnd() {
+        return tunelEnd;
+    }
+
+
+
     public boolean isGrassPresent(){
         return grass;
-    }
-    public boolean isJungle(){
-        return jungle;
-    }
-    public void addJungle(){
-        jungle = true;
     }
     public void growGrass(){
         grass=true;
