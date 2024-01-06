@@ -96,6 +96,7 @@ public abstract class AbstractWorldMap implements WorldMap{
                         potentialParent1.reduceEnergy(energyConsumedByReproduction);
                         potentialParent2.reduceEnergy(energyConsumedByReproduction);
                         Animal child = potentialParent1.createChild(potentialParent2);
+                        child.setEnergy(energyToReproduce*2);
                         children.add(child);
                     }
                 }
