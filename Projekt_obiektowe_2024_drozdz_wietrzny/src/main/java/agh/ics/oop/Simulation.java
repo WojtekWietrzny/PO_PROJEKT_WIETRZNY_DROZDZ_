@@ -24,6 +24,8 @@ public class Simulation implements Runnable{
         this.worldMap.setAnimalEnergy(simulationParameters.startingAnimalEnergy());
         this.worldMap.growGrass(simulationParameters.startingPlantAmount());
 
+        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
+        worldMap.addObserver(consoleMapDisplay);
     }
 
     @Override

@@ -17,12 +17,13 @@ public abstract class AbstractWorldMap implements WorldMap{
     protected int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
     // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
     //ale faktycznie do kodu w pętli lepiej używać size
-    protected final int energyToReproduce = 1;
-    protected final int energyConsumedByReproduction = 2;
-    protected final int grassNutritionalValue = 3;
-    protected final BehaviourType behaviourType;
-    protected final int genomeSize;
+    private final int energyToReproduce = 1;
+    private final int energyConsumedByReproduction = 2;
+    private final int grassNutritionalValue = 3;
+    private final BehaviourType behaviourType;
+    private final int genomeSize;
     protected final Boundary bounds;
+    private final List<MapChangeListener> observers = new ArrayList<>();
 
     public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){
         Vector2d lowerLeft = new Vector2d(0,0);
@@ -37,6 +38,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         emptyPositionsNotPreferred = (ArrayList<Vector2d>) allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
         emptyPositionsPreferredPrototype = emptyPositionsPreferred;
         emptyPositionsNotPreferredPrototype = emptyPositionsNotPreferred;
+        startMap(width, height);
     }
 
     private void startMap(int width, int height){
@@ -48,6 +50,18 @@ public abstract class AbstractWorldMap implements WorldMap{
                 allPositions.add(position);
             }
         }
+    }
+
+    protected void notifyObservers(String message) {
+        for (MapChangeListener observer : observers) {
+            observer.mapChanged(this, message);
+        }
+    }
+    public  void addObserver(MapChangeListener observer){
+        observers.add(observer);
+    }
+    public  void removeObserver(MapChangeListener observer){
+        observers.remove(observer);
     }
 
     public void generateAnimals(int amount){
@@ -71,10 +85,8 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
 
 
-    public void move(WorldElement animal){
-        for (int i = 0; i < animalsQuantity; i++){
-
-        }
+    public boolean canMoveTo(Vector2d position){
+        return position.follows(bounds.lowerLeft()) && position.precedes(bounds.upperRight());
     }
 
     public void place(Animal animal) {
@@ -82,6 +94,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             elements.get(animal.getPosition()).addAnimal(animal);
             animalsQuantity += 1;
             animals.add(animal);
+            notifyObservers("Placed animal at " + animal.getPosition());
         }
     }
     public void addGrass(Vector2d position){
