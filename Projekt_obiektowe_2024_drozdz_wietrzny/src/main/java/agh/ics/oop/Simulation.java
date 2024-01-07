@@ -31,12 +31,12 @@ public class Simulation implements Runnable{
     @Override
     public void run() {
         while (this.worldMap.getAnimalsQuantity() > 0) {
-            this.worldMap.growGrass(simulationParameters.plantGrowthRate());
             this.worldMap.reduceAnimalEnergy();
             this.worldMap.removeDead();
             this.worldMap.advanceAnimals();
             this.worldMap.eat();
             this.worldMap.reproduce();
+            this.worldMap.growGrass(simulationParameters.plantGrowthRate());
         }
     }
 }

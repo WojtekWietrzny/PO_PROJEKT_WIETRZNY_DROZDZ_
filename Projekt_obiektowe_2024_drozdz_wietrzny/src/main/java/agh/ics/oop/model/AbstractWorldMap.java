@@ -79,6 +79,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             Vector2d positionToCheck = animal.wantToMove();
             if (canMoveTo(positionToCheck)){
                 animal.setPosition(positionToCheck);
+                notifyObservers("Moved animal to " + animal.getPosition());
             }
         }
     }
@@ -145,8 +146,9 @@ public abstract class AbstractWorldMap implements WorldMap{
         for (Animal animal : this.animals){
             ArrayList<Animal> animalsInCurrentCell = new ArrayList<>(this.elements.get(animal.getPosition()).getAnimals());
             ArrayList<Animal> children = new ArrayList<>();
+            int size = animalsInCurrentCell.size();
             if (animalsInCurrentCell.size() > 1){
-                for (int i=0; i<animalsInCurrentCell.size(); i++){
+                for (int i=0; i<size; i++){
                     Animal potentialParent1 = animalsInCurrentCell.get(i);
                     Animal potentialParent2 = animalsInCurrentCell.get((i+1)%animalsInCurrentCell.size());
                     if( potentialParent1.getEnergy() >= energyToReproduce && potentialParent2.getEnergy() >= energyToReproduce){
@@ -159,9 +161,12 @@ public abstract class AbstractWorldMap implements WorldMap{
                     }
                 }
             }
-            for (Animal child : children){
-                place(child);
+            if(children.size()>0){
+                for (Animal child : children){
+                    place(child);
+                }
             }
+
         }
 
     }
