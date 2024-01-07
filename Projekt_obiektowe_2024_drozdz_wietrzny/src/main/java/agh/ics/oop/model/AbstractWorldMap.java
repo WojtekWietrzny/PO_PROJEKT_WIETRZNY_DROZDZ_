@@ -194,7 +194,7 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
     //sprawdzanie czy istnieją miejsca na trawę
     public boolean freePlaces(){
-            return  !(emptyPositionsNotPreferred.isEmpty()) || !(emptyPositionsPreferred.isEmpty());
+            return  (!(emptyPositionsNotPreferred.size() > 0) || !(emptyPositionsPreferred.size() > 0));
     }
 
 
