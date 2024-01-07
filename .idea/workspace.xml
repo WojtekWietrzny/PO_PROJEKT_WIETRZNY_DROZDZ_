@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="przygotowania do testowania wreszcie">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Gene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Gene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/WorldElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/WorldElement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/test.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="przygotowania do testowania wreszcie" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,12 +62,14 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.World" />
+  <component name="RunManager" selected="JUnit.TunnelWorldMapTest.testTunnelWorldMap">
+    <configuration name="TunnelWorldMapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
       <extension name="coverage">
         <pattern>
@@ -85,13 +77,84 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="agh.ics.oop" />
+      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TunnelWorldMapTest.testAbstractWorldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.ics.oop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="agh.ics.oop" />
+      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
+      <option name="METHOD_NAME" value="testAbstractWorldMap" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TunnelWorldMapTest.testAdvanceAnimals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.ics.oop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="agh.ics.oop" />
+      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
+      <option name="METHOD_NAME" value="testAdvanceAnimals" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TunnelWorldMapTest.testSphereWorldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.ics.oop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="agh.ics.oop" />
+      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
+      <option name="METHOD_NAME" value="testSphereWorldMap" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TunnelWorldMapTest.testTunnelWorldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="agh.ics.oop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="agh.ics.oop" />
+      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
+      <option name="METHOD_NAME" value="testTunnelWorldMap" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.World" />
+        <item itemvalue="JUnit.TunnelWorldMapTest.testTunnelWorldMap" />
+        <item itemvalue="JUnit.TunnelWorldMapTest.testSphereWorldMap" />
+        <item itemvalue="JUnit.TunnelWorldMapTest.testAdvanceAnimals" />
+        <item itemvalue="JUnit.TunnelWorldMapTest.testAbstractWorldMap" />
+        <item itemvalue="JUnit.TunnelWorldMapTest" />
       </list>
     </recent_temporary>
   </component>
