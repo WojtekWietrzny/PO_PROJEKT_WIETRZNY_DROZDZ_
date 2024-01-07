@@ -39,6 +39,11 @@ public enum MapDirection {
         return MapDirection.valueOf(arr[index].name());
     }
 
+    public MapDirection opposite(){
+        MapDirection[] arr = MapDirection.values();
+        return this.rotate(arr.length/2);
+    }
+
     public Vector2d toUnitVector(){
         return switch(this){
             case NORTH -> new Vector2d(0,1);

@@ -32,7 +32,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         this.bounds = mapBounds;
         this.behaviourType = behaviourType;
         this.genomeSize = genomeSize;
-        float midPoint = Math.round(height/2);
+        float midPoint = Math.round((float)height/2);
         allPositions.sort((o1, o2) -> Float.compare(Math.abs(o1.getY() - midPoint), Math.abs(o2.getY() - midPoint)));
         emptyPositionsPreferred = (ArrayList<Vector2d>) allPositions.subList(0, (int) Math.round(0.2*width*height));
         emptyPositionsNotPreferred = (ArrayList<Vector2d>) allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
