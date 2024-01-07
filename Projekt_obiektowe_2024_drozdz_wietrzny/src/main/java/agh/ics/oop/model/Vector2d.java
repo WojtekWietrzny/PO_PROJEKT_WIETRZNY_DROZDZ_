@@ -8,8 +8,8 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class Vector2d {
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 
     public Vector2d(int x, int y) {
         this.x = x;
@@ -20,9 +20,14 @@ public class Vector2d {
     public int getX() {
         return x;
     }
-
+    public void setX(int val){
+        this.x = val;
+    }
     public int getY() {
         return y;
+    }
+    public void setY(int val){
+        this.y = val;
     }
 
     public String toString(){

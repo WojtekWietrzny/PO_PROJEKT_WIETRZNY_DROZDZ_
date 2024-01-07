@@ -50,6 +50,9 @@ public class Animal implements WorldElement {
     public MapDirection getOrientation() {
         return orientation;
     }
+    public void setOrientation(MapDirection mapDirection){
+        this.orientation = mapDirection;
+    }
 
     public void setEnergy(int energy) {
         this.energy = energy;
