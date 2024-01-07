@@ -18,16 +18,16 @@ public class MapVisualiser {
     private static final String EMPTY_CELL = " ";
     private static final String FRAME_SEGMENT = "-";
     private static final String CELL_SEGMENT = "|";
-    private final WorldMap map;
+    //private final WorldMap map;
 
     /**
      * Initializes the MapVisualizer with an instance of map to visualize.
      *
      * @param map
      */
-    public MapVisualizer(AbstractWorldMap map) {
+    /*public MapVisualizer(AbstractWorldMap map) {
         this.map = map;
-    }
+    }*/
 
     /**
      * Convert selected region of the map into a string. It is assumed that the
@@ -51,7 +51,7 @@ public class MapVisualiser {
                 } else {
                     builder.append(CELL_SEGMENT);
                     if (j <= upperRight.getX()) {
-                        builder.append(drawObject(new Vector2d(j, i)));
+                        //builder.append(drawObject(new Vector2d(j, i)));
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class MapVisualiser {
         return builder.toString();
     }
 
-    public String drawObject(Vector2d currentPosition) {
+    /*public String drawObject(Vector2d currentPosition) {
         if (this.map.isOccupied(currentPosition)) {
             Object object = this.map.objectAt(currentPosition);
             if (object != null) {
@@ -86,5 +86,5 @@ public class MapVisualiser {
             }
         }
         return EMPTY_CELL;
-    }
+    }*/
 }
