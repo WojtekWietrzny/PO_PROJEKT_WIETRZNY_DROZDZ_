@@ -143,7 +143,7 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
     public void reproduce(){
         for (Animal animal : this.animals){
-            ArrayList<Animal> animalsInCurrentCell = this.elements.get(animal.getPosition()).getAnimals();
+            ArrayList<Animal> animalsInCurrentCell = new ArrayList<>(this.elements.get(animal.getPosition()).getAnimals());
             ArrayList<Animal> children = new ArrayList<>();
             if (animalsInCurrentCell.size() > 1){
                 for (int i=0; i<animalsInCurrentCell.size(); i++){
@@ -155,6 +155,7 @@ public abstract class AbstractWorldMap implements WorldMap{
                         Animal child = potentialParent1.createChild(potentialParent2);
                         child.setEnergy(energyConsumedByReproduction*2);
                         children.add(child);
+
                     }
                 }
             }
