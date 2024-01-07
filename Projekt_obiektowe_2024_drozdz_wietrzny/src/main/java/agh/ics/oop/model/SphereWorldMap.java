@@ -31,6 +31,7 @@ public class SphereWorldMap extends AbstractWorldMap {
             }
 
             animal.setPosition(positionToCheck);
+            notifyObservers("Moved animal to " + animal.getPosition());
         }
     }
 

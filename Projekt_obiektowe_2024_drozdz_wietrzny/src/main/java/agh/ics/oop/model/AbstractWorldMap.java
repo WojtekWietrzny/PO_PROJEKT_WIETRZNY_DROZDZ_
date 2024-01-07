@@ -12,8 +12,6 @@ public abstract class AbstractWorldMap implements WorldMap{
     protected List<Vector2d> allPositions = new ArrayList<>();
     protected List<Vector2d> emptyPositionsPreferred = new ArrayList<>();
     protected List<Vector2d> emptyPositionsNotPreferred = new ArrayList<>();
-    protected List<Vector2d> emptyPositionsPreferredPrototype = new ArrayList<>();
-    protected List<Vector2d> emptyPositionsNotPreferredPrototype = new ArrayList<>();
     protected int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
     // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
     //ale faktycznie do kodu w pętli lepiej używać size
@@ -37,8 +35,11 @@ public abstract class AbstractWorldMap implements WorldMap{
         allPositions.sort((o1, o2) -> Float.compare(Math.abs(o1.getY() - midPoint), Math.abs(o2.getY() - midPoint)));
         emptyPositionsPreferred = allPositions.subList(0, (int) Math.round(0.2*width*height));
         emptyPositionsNotPreferred = allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
-        emptyPositionsPreferredPrototype = emptyPositionsPreferred;
-        emptyPositionsNotPreferredPrototype = emptyPositionsNotPreferred;
+
+        for(Vector2d position : emptyPositionsPreferred){
+            this.elements.get(position).setJungle();
+        }
+
     }
     private void startMap(int width, int height){
         for(int i = 0; i < width;i++){
@@ -124,6 +125,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
         for (Animal animal : animalsToRemove){
             this.animals.remove(animal);
+            this.animalsQuantity -= 1;
         }
     }
     public void eat(){
@@ -132,10 +134,10 @@ public abstract class AbstractWorldMap implements WorldMap{
             if (this.elements.get(position).isGrassPresent()){
                 this.elements.get(position).eatGrass();
                 animal.addEnergy(this.grassNutritionalValue);
-                if(emptyPositionsPreferredPrototype.contains(position)){
+                if(this.elements.get(position).isJungle()){
                     emptyPositionsPreferred.add(position);
                 }
-                if(emptyPositionsNotPreferredPrototype.contains(position)){
+                else{
                     emptyPositionsNotPreferred.add(position);
                 }
             }

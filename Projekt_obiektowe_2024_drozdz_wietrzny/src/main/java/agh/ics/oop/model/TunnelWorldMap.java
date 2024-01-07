@@ -62,6 +62,7 @@ public class TunnelWorldMap extends AbstractWorldMap{
             else if (canMoveTo(positionToCheck)){
                 animal.setPosition(positionToCheck);
             }
+            notifyObservers("Moved animal to " + animal.getPosition());
         }
     }
 

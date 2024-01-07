@@ -78,7 +78,7 @@ public class Animal implements WorldElement {
     public Vector2d wantToMove(){
         this.orientation = this.orientation.rotate(this.gene.getCurrent());
         Vector2d newPosition = new Vector2d(this.position.getX(), this.position.getY());
-        newPosition.add(this.orientation.toUnitVector());
+        newPosition = newPosition.add(this.orientation.toUnitVector());
         return newPosition;
     }
 
