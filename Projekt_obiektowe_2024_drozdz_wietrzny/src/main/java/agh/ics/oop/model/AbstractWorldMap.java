@@ -146,9 +146,14 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
     public void reproduce(){
         ArrayList<Animal> children = new ArrayList<>();
-        for(Animal potentialParent1 : this.animals){
-            for (Animal potentialParent2 : this.animals){
+        for(int i=0; i< animalsQuantity; i++){
+            Animal potentialParent1 = this.animals.get(i);
+            for (int j=i+1; j<animalsQuantity; j++){
+                Animal potentialParent2 = this.animals.get(j);
                 if (potentialParent1 == potentialParent2){
+                    continue;
+                }
+                if(!potentialParent1.getPosition().equals(potentialParent2.getPosition())){
                     continue;
                 }
                 if (potentialParent1.getEnergy() < this.energyToReproduce){

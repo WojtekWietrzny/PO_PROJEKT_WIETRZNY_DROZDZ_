@@ -20,12 +20,12 @@ public class Simulation implements Runnable{
             this.worldMap = new TunnelWorldMap(width, height, simulationParameters.behaviourType(), simulationParameters.genomeSize());
         }
 
+        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
+        worldMap.addObserver(consoleMapDisplay);
+
         this.worldMap.generateAnimals(simulationParameters.startingAnimalAmount());
         this.worldMap.setAnimalEnergy(simulationParameters.startingAnimalEnergy());
         this.worldMap.growGrass(simulationParameters.startingPlantAmount());
-
-        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
-        worldMap.addObserver(consoleMapDisplay);
     }
 
     @Override
