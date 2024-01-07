@@ -201,13 +201,13 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
     //sprawdzanie czy istnieją miejsca na trawę
     public boolean freePlaces(){
-            return  (!(emptyPositionsNotPreferred.size() > 0) || !(emptyPositionsPreferred.size() > 0));
+            return  ((emptyPositionsNotPreferred.size() > 0) || (emptyPositionsPreferred.size() > 0));
     }
 
 
     //wyrastanie określonej ilości trawy - cała 1 faza dnia
     public void growGrass(int grassDaily){
-        for(int i =0; i < grassDaily; i++){
+        for(int i=0; i < grassDaily; i++){
             if(freePlaces()){
                 Vector2d position = randomNextPosition();
                 addGrass(position);
