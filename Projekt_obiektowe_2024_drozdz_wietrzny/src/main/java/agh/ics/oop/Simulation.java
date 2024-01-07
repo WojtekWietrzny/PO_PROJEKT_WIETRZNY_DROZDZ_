@@ -7,14 +7,9 @@ public class Simulation implements Runnable{
     private SimulationParameters simulationParameters;
     private AbstractWorldMap worldMap;
 
-    public Simulation(int width, int height, MapType mapType, BehaviourType behaviourType, int startingPlantAmount,
-                      int plantGrowthRate, int startingAnimalAmount, int startingAnimalEnergy,
-                      int energyToReproduce, int energyConsumedByReproduction, int minMutations,
-                      int maxMutations, int genomeSize){
+    public Simulation(int width, int height, SimulationParameters allGenericParameters){
         this.currentDay = 0;
-        this.simulationParameters = new SimulationParameters(mapType, behaviourType, startingPlantAmount,
-                plantGrowthRate, startingAnimalAmount, startingAnimalEnergy, energyToReproduce,
-                energyConsumedByReproduction, minMutations, maxMutations, genomeSize);
+        this.simulationParameters = allGenericParameters;
 
         //tu będą jeszcze przekazywane ustawienia z klasy settings zapisującej te konfiguracje jakoś do pliku i czytającej z niego
         // + statystyki

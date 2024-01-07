@@ -7,22 +7,22 @@ import java.util.*;
 public abstract class AbstractWorldMap implements WorldMap{
 
 
-    private final Map<Vector2d, MapCell> elements = new HashMap<>();
-    private final ArrayList<Animal> animals = new ArrayList<>();
-    private ArrayList<Vector2d> allPositions = new ArrayList<>();
-    private ArrayList<Vector2d> emptyPositionsPreferred = new ArrayList<>();
-    private ArrayList<Vector2d> emptyPositionsNotPreferred = new ArrayList<>();
-    private ArrayList<Vector2d> emptyPositionsPreferredPrototype = new ArrayList<>();
-    private ArrayList<Vector2d> emptyPositionsNotPreferredPrototype = new ArrayList<>();
-    private int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
+    protected final Map<Vector2d, MapCell> elements = new HashMap<>();
+    protected final ArrayList<Animal> animals = new ArrayList<>();
+    protected ArrayList<Vector2d> allPositions = new ArrayList<>();
+    protected ArrayList<Vector2d> emptyPositionsPreferred = new ArrayList<>();
+    protected ArrayList<Vector2d> emptyPositionsNotPreferred = new ArrayList<>();
+    protected ArrayList<Vector2d> emptyPositionsPreferredPrototype = new ArrayList<>();
+    protected ArrayList<Vector2d> emptyPositionsNotPreferredPrototype = new ArrayList<>();
+    protected int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
     // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
     //ale faktycznie do kodu w pętli lepiej używać size
-    private final int energyToReproduce = 1;
-    private final int energyConsumedByReproduction = 2;
-    private final int grassNutritionalValue = 3;
-    private final BehaviourType behaviourType;
-    private final int genomeSize;
-    private final Boundary bounds;
+    protected final int energyToReproduce = 1;
+    protected final int energyConsumedByReproduction = 2;
+    protected final int grassNutritionalValue = 3;
+    protected final BehaviourType behaviourType;
+    protected final int genomeSize;
+    protected final Boundary bounds;
 
     public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){
         Vector2d lowerLeft = new Vector2d(0,0);

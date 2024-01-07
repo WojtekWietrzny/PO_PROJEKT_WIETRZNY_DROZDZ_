@@ -8,7 +8,7 @@ public class MapCell {
     private boolean grass = false;
     private boolean tunelStart = false;
     private boolean tunelEnd = false;
-
+    private Vector2d tunnelDestination;
     private int deathCounter = 0;
 
     public MapCell(){
@@ -31,8 +31,12 @@ public class MapCell {
     public boolean isTunelEnd() {
         return tunelEnd;
     }
-
-
+    public void setTunnelDestination(Vector2d position){
+        this.tunnelDestination = position;
+    }
+    public Vector2d getTunnelDestination(){
+        return tunnelDestination;
+    }
 
     public boolean isGrassPresent(){
         return grass;
