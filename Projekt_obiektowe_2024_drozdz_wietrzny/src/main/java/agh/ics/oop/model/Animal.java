@@ -43,6 +43,9 @@ public class Animal implements WorldElement {
     public Vector2d getPosition(){
         return position;
     }
+    public void setPosition(Vector2d position){
+        this.position = position;
+    }
 
     public MapDirection getOrientation() {
         return orientation;
@@ -61,13 +64,20 @@ public class Animal implements WorldElement {
 
     public void move() {
         this.orientation = this.orientation.rotate(this.gene.getCurrent());
-        Vector2d newPosition = this.position.add(this.orientation.toUnitVector());
+        Vector2d newPosition = new Vector2d(this.position.getX(), this.position.getY());
+        newPosition.add(this.orientation.toUnitVector());
 
         if (this.map.canMoveTo(newPosition)){
             this.position = newPosition;
         }
     }
 
+    public Vector2d wantToMove(){
+        this.orientation = this.orientation.rotate(this.gene.getCurrent());
+        Vector2d newPosition = new Vector2d(this.position.getX(), this.position.getY());
+        newPosition.add(this.orientation.toUnitVector());
+        return newPosition;
+    }
 
     public Animal createChild(Animal other){
         Gene childGene = this.gene.createChild(other.getGene(), this.energy, other.getEnergy());

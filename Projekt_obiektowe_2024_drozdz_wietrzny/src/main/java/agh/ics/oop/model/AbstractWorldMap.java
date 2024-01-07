@@ -63,7 +63,10 @@ public abstract class AbstractWorldMap implements WorldMap{
 
     public void advanceAnimals(){
         for (Animal animal : this.animals){
-            animal.move();
+            Vector2d positionToCheck = animal.wantToMove();
+            if (canMoveTo(positionToCheck)){
+                animal.setPosition(positionToCheck);
+            }
         }
     }
 
