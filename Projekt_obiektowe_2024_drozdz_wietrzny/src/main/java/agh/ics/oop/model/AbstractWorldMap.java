@@ -85,11 +85,6 @@ public abstract class AbstractWorldMap implements WorldMap{
     public boolean canMoveTo(Vector2d position){
         return position.follows(bounds.lowerLeft()) && position.precedes(bounds.upperRight());
     }
-    public void move(WorldElement animal){
-        for (int i = 0; i < animalsQuantity; i++){
-
-        }
-    }
 
     public void place(Animal animal) {
         if(canMoveTo(animal.getPosition())){
