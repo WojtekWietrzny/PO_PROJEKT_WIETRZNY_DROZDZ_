@@ -27,7 +27,10 @@ public class Simulation implements Runnable{
 
         this.worldMap.generateAnimals(simulationParameters.startingAnimalAmount());
         this.worldMap.setAnimalEnergy(simulationParameters.startingAnimalEnergy());
+        this.worldMap.growGrass(simulationParameters.startingPlantAmount());
 
+        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
+        worldMap.addObserver(consoleMapDisplay);
     }
 
     @Override
@@ -36,6 +39,7 @@ public class Simulation implements Runnable{
             this.worldMap.reduceAnimalEnergy();
             this.worldMap.removeDead();
             this.worldMap.advanceAnimals();
+            this.worldMap.eat();
             this.worldMap.reproduce();
             this.worldMap.growGrass(simulationParameters.plantGrowthRate());
         }
