@@ -143,32 +143,26 @@ public abstract class AbstractWorldMap implements WorldMap{
 
     }
     public void reproduce(){
-        for (Animal animal : this.animals){
-            ArrayList<Animal> animalsInCurrentCell = new ArrayList<>(this.elements.get(animal.getPosition()).getAnimals());
-            ArrayList<Animal> children = new ArrayList<>();
-            int size = animalsInCurrentCell.size();
-            if (animalsInCurrentCell.size() > 1){
-                for (int i=0; i<size; i++){
-                    Animal potentialParent1 = animalsInCurrentCell.get(i);
-                    Animal potentialParent2 = animalsInCurrentCell.get((i+1)%animalsInCurrentCell.size());
-                    if( potentialParent1.getEnergy() >= energyToReproduce && potentialParent2.getEnergy() >= energyToReproduce){
-                        potentialParent1.reduceEnergy(energyConsumedByReproduction);
-                        potentialParent2.reduceEnergy(energyConsumedByReproduction);
-                        Animal child = potentialParent1.createChild(potentialParent2);
-                        child.setEnergy(energyConsumedByReproduction*2);
-                        children.add(child);
-
-                    }
+        ArrayList<Animal> children = new ArrayList<>();
+        for(Animal potentialParent1 : this.animals){
+            for (Animal potentialParent2 : this.animals){
+                if (potentialParent1 == potentialParent2){
+                    continue;
                 }
-            }
-            if(children.size()>0){
-                for (Animal child : children){
-                    place(child);
+                if (potentialParent1.getEnergy() < this.energyToReproduce){
+                    continue;
                 }
+                if (potentialParent2.getEnergy() < this.energyToReproduce){
+                    continue;
+                }
+                Animal child = potentialParent1.createChild(potentialParent2);
+                children.add(child);
             }
-
         }
 
+        for (Animal child : children){
+            place(child);
+        }
     }
     //funkcja odpowiedzialna za losowanie kolejnego pola na trawę
     public Vector2d randomNextPosition(){
