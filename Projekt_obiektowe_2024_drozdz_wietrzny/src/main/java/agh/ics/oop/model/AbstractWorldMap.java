@@ -170,7 +170,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         Vector2d position;
         int number = random.nextInt(100);
         if (number < 80){
-            if(!emptyPositionsPreferred.isEmpty()) {
+            if(!(emptyPositionsPreferred.isEmpty())) {
                 position = emptyPositionsPreferred.get(random.nextInt(emptyPositionsPreferred.size()));
                 emptyPositionsPreferred.remove(position);
             }
@@ -180,7 +180,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             }
         }
         else{
-            if(!emptyPositionsNotPreferred.isEmpty()) {
+            if(!(emptyPositionsNotPreferred.isEmpty())) {
                 position = emptyPositionsNotPreferred.get(random.nextInt(emptyPositionsNotPreferred.size()));
                 emptyPositionsNotPreferred.remove(position);
             }
@@ -194,7 +194,7 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
     //sprawdzanie czy istnieją miejsca na trawę
     public boolean freePlaces(){
-            return  !emptyPositionsNotPreferred.isEmpty() || !emptyPositionsPreferred.isEmpty();
+            return  !(emptyPositionsNotPreferred.isEmpty()) || !(emptyPositionsPreferred.isEmpty());
     }
 
 

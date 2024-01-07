@@ -13,7 +13,6 @@ public class World {
         SimulationParameters parameters = new SimulationParameters(MapType.SphereMap, BehaviourType.CompletePredestination,
                 10, 5,10,10, 5,3,
                 1,3,7);
-        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
         Simulation simulation = new Simulation(10,10,parameters);
         simulation.run();
     }
