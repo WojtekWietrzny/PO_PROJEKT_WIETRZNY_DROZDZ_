@@ -43,6 +43,6 @@ public class SphereWorldMap extends AbstractWorldMap {
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return false;
+        return position.getY() >= super.bounds.lowerLeft().getY() && position.getY() <= super.bounds.upperRight().getY();
     }
 }

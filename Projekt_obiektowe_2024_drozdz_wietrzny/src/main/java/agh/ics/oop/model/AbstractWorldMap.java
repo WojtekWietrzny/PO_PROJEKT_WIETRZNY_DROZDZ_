@@ -22,7 +22,8 @@ public abstract class AbstractWorldMap implements WorldMap{
     private final int grassNutritionalValue = 3;
     private final BehaviourType behaviourType;
     private final int genomeSize;
-    private final Boundary bounds;
+    protected final Boundary bounds;
+    private final List<MapChangeListener> observers = new ArrayList<>();
 
     public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){
         Vector2d lowerLeft = new Vector2d(0,0);
@@ -37,6 +38,7 @@ public abstract class AbstractWorldMap implements WorldMap{
         emptyPositionsNotPreferred = (ArrayList<Vector2d>) allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
         emptyPositionsPreferredPrototype = emptyPositionsPreferred;
         emptyPositionsNotPreferredPrototype = emptyPositionsNotPreferred;
+        startMap(width, height);
     }
 
     private void startMap(int width, int height){
@@ -48,6 +50,18 @@ public abstract class AbstractWorldMap implements WorldMap{
                 allPositions.add(position);
             }
         }
+    }
+
+    protected void notifyObservers(String message) {
+        for (MapChangeListener observer : observers) {
+            observer.mapChanged(this, message);
+        }
+    }
+    public  void addObserver(MapChangeListener observer){
+        observers.add(observer);
+    }
+    public  void removeObserver(MapChangeListener observer){
+        observers.remove(observer);
     }
 
     public void generateAnimals(int amount){
@@ -68,6 +82,9 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
 
 
+    public boolean canMoveTo(Vector2d position){
+        return position.follows(bounds.lowerLeft()) && position.precedes(bounds.upperRight());
+    }
     public void move(WorldElement animal){
         for (int i = 0; i < animalsQuantity; i++){
 
@@ -79,6 +96,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             elements.get(animal.getPosition()).addAnimal(animal);
             animalsQuantity += 1;
             animals.add(animal);
+            notifyObservers("Placed animal at " + animal.getPosition());
         }
     }
     public void addGrass(Vector2d position){
