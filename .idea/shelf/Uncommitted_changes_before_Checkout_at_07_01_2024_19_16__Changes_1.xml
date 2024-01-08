@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1" date="1704651423183" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 07.01.2024 19:16 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" />
+    <option name="AFTER_PATH" value="out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/Animal.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/AbstractWorldMap.class" />
+    <option name="AFTER_PATH" value="out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/AbstractWorldMap.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/AbstractWorldMap.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class" />
+    <option name="AFTER_PATH" value="out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/Animal$1.class" />
+  </binary>
+</changelist>

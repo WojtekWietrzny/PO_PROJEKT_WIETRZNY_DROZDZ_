@@ -1,0 +1,282 @@
+Index: Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package agh.ics.oop.model;\r\n\r\nimport agh.ics.oop.model.util.MapVisualiser;\r\n\r\nimport java.util.*;\r\n\r\npublic abstract class AbstractWorldMap implements WorldMap{\r\n\r\n\r\n    protected final Map<Vector2d, MapCell> elements = new HashMap<>();\r\n    protected final List<Animal> animals = new ArrayList<>();\r\n    protected List<Vector2d> allPositions = new ArrayList<>();\r\n    protected List<Vector2d> emptyPositionsPreferred = new ArrayList<>();\r\n    protected List<Vector2d> emptyPositionsNotPreferred = new ArrayList<>();\r\n    protected List<Vector2d> emptyPositionsPreferredPrototype = new ArrayList<>();\r\n    protected List<Vector2d> emptyPositionsNotPreferredPrototype = new ArrayList<>();\r\n    protected int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,\r\n    // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program\r\n    //ale faktycznie do kodu w pętli lepiej używać size\r\n    private final int energyToReproduce = 1;\r\n    private final int energyConsumedByReproduction = 2;\r\n    private final int grassNutritionalValue = 3;\r\n    private final BehaviourType behaviourType;\r\n    private final int genomeSize;\r\n    protected final Boundary bounds;\r\n    private final List<MapChangeListener> observers = new ArrayList<>();\r\n\r\n    public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){\r\n        Vector2d lowerLeft = new Vector2d(0,0);\r\n        Vector2d upperRight = new Vector2d(width, height);\r\n        Boundary mapBounds = new Boundary(lowerLeft, upperRight);\r\n        this.bounds = mapBounds;\r\n        this.behaviourType = behaviourType;\r\n        this.genomeSize = genomeSize;\r\n        float midPoint = Math.round(height/2);\r\n        startMap(width, height);\r\n        allPositions.sort((o1, o2) -> Float.compare(Math.abs(o1.getY() - midPoint), Math.abs(o2.getY() - midPoint)));\r\n        emptyPositionsPreferred = allPositions.subList(0, (int) Math.round(0.2*width*height));\r\n        emptyPositionsNotPreferred = allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());\r\n        emptyPositionsPreferredPrototype = emptyPositionsPreferred;\r\n        emptyPositionsNotPreferredPrototype = emptyPositionsNotPreferred;\r\n    }\r\n    private void startMap(int width, int height){\r\n        for(int i = 0; i < width;i++){\r\n            for(int j = 0; j < height; j++){\r\n                Vector2d position = new Vector2d(i,j);\r\n                MapCell cell = new MapCell();\r\n                elements.put(position, cell);\r\n                allPositions.add(position);\r\n            }\r\n        }\r\n    }\r\n\r\n    protected void notifyObservers(String message) {\r\n        for (MapChangeListener observer : observers) {\r\n            observer.mapChanged(this, message);\r\n        }\r\n    }\r\n    public  void addObserver(MapChangeListener observer){\r\n        observers.add(observer);\r\n    }\r\n    public  void removeObserver(MapChangeListener observer){\r\n        observers.remove(observer);\r\n    }\r\n\r\n    public void generateAnimals(int amount){\r\n        Random random = new Random();\r\n        int x, y;\r\n        for(int i=0; i<amount; i++){\r\n            x = random.nextInt(this.bounds.upperRight().getX() - this.bounds.lowerLeft().getX()) + this.bounds.lowerLeft().getX();\r\n            y = random.nextInt(this.bounds.upperRight().getY() - this.bounds.lowerLeft().getY()) + this.bounds.lowerLeft().getY();\r\n            Animal animal = new Animal(this, new Vector2d(x, y), Gene.generateRandomGene(this.genomeSize, this.behaviourType));\r\n            place(animal);\r\n        }\r\n    }\r\n\r\n    public void advanceAnimals(){\r\n        for (Animal animal : this.animals){\r\n            Vector2d positionToCheck = animal.wantToMove();\r\n            if (canMoveTo(positionToCheck)){\r\n                animal.setPosition(positionToCheck);\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n    public boolean canMoveTo(Vector2d position){\r\n        return position.follows(bounds.lowerLeft()) && position.precedes(bounds.upperRight());\r\n    }\r\n\r\n    public void place(Animal animal) {\r\n        if(canMoveTo(animal.getPosition())){\r\n            elements.get(animal.getPosition()).addAnimal(animal);\r\n            animalsQuantity += 1;\r\n            animals.add(animal);\r\n            notifyObservers(\"Placed animal at \" + animal.getPosition());\r\n        }\r\n    }\r\n    public void addGrass(Vector2d position){\r\n            MapCell cell = elements.get(position);\r\n            cell.growGrass();\r\n    }\r\n\r\n    public void reduceAnimalEnergy(){\r\n        for (Animal animal : this.animals){\r\n            animal.reduceEnergy(1);\r\n        }\r\n    }\r\n\r\n    public void setAnimalEnergy(int energy){\r\n        for (Animal animal : this.animals){\r\n            animal.setEnergy(energy);\r\n        }\r\n    }\r\n\r\n    public void removeDead(){\r\n        ArrayList<Animal> animalsToRemove = new ArrayList<>();\r\n        for (Animal animal : this.animals){\r\n            if (animal.getEnergy() < 0){\r\n                this.elements.get(animal.getPosition()).animalDied(animal);\r\n                animalsToRemove.add(animal);\r\n            }\r\n        }\r\n        for (Animal animal : animalsToRemove){\r\n            this.animals.remove(animal);\r\n        }\r\n    }\r\n    public void eat(){\r\n        for (Animal animal : this.animals){\r\n            Vector2d position = animal.getPosition();\r\n            if (this.elements.get(position).isGrassPresent()){\r\n                this.elements.get(position).eatGrass();\r\n                animal.addEnergy(this.grassNutritionalValue);\r\n                if(emptyPositionsPreferredPrototype.contains(position)){\r\n                    emptyPositionsPreferred.add(position);\r\n                }\r\n                if(emptyPositionsNotPreferredPrototype.contains(position)){\r\n                    emptyPositionsNotPreferred.add(position);\r\n                }\r\n            }\r\n        }\r\n\r\n    }\r\n    public void reproduce(){\r\n        for (Animal animal : this.animals){\r\n            ArrayList<Animal> animalsInCurrentCell = this.elements.get(animal.getPosition()).getAnimals();\r\n            ArrayList<Animal> children = new ArrayList<>();\r\n            if (animalsInCurrentCell.size() > 1){\r\n                for (int i=0; i<animalsInCurrentCell.size(); i++){\r\n                    Animal potentialParent1 = animalsInCurrentCell.get(i);\r\n                    Animal potentialParent2 = animalsInCurrentCell.get((i+1)%animalsInCurrentCell.size());\r\n                    if( potentialParent1.getEnergy() >= energyToReproduce && potentialParent2.getEnergy() >= energyToReproduce){\r\n                        potentialParent1.reduceEnergy(energyConsumedByReproduction);\r\n                        potentialParent2.reduceEnergy(energyConsumedByReproduction);\r\n                        Animal child = potentialParent1.createChild(potentialParent2);\r\n                        child.setEnergy(energyConsumedByReproduction*2);\r\n                        children.add(child);\r\n                    }\r\n                }\r\n            }\r\n            for (Animal child : children){\r\n                place(child);\r\n            }\r\n        }\r\n\r\n    }\r\n    //funkcja odpowiedzialna za losowanie kolejnego pola na trawę\r\n    public Vector2d randomNextPosition(){\r\n        Random random = new Random();\r\n        Vector2d position;\r\n        int number = random.nextInt(100);\r\n        if (number < 80){\r\n            if(!emptyPositionsPreferred.isEmpty()) {\r\n                position = emptyPositionsPreferred.get(random.nextInt(emptyPositionsPreferred.size()));\r\n                emptyPositionsPreferred.remove(position);\r\n            }\r\n            else{\r\n                position = emptyPositionsNotPreferred.get(random.nextInt(emptyPositionsNotPreferred.size()));\r\n                emptyPositionsNotPreferred.remove(position);\r\n            }\r\n        }\r\n        else{\r\n            if(!emptyPositionsNotPreferred.isEmpty()) {\r\n                position = emptyPositionsNotPreferred.get(random.nextInt(emptyPositionsNotPreferred.size()));\r\n                emptyPositionsNotPreferred.remove(position);\r\n            }\r\n            else{\r\n                position = emptyPositionsPreferred.get(random.nextInt(emptyPositionsPreferred.size()));\r\n                emptyPositionsPreferred.remove(position);\r\n            }\r\n\r\n        }\r\n        return position;\r\n    }\r\n    //sprawdzanie czy istnieją miejsca na trawę\r\n    public boolean freePlaces(){\r\n            return  !emptyPositionsNotPreferred.isEmpty() || !emptyPositionsPreferred.isEmpty();\r\n    }\r\n\r\n\r\n    //wyrastanie określonej ilości trawy - cała 1 faza dnia\r\n    public void growGrass(int grassDaily){\r\n        for(int i =0; i < grassDaily; i++){\r\n            if(freePlaces()){\r\n                Vector2d position = randomNextPosition();\r\n                addGrass(position);\r\n            }\r\n        }\r\n    }\r\n\r\n    public int getAnimalsQuantity(){\r\n        return animalsQuantity;\r\n    }\r\n\r\n\r\n    public List<Vector2d> getEmptyPositionsNotPreferred() {\r\n        return emptyPositionsNotPreferred;\r\n    }\r\n\r\n    public List<Vector2d> getEmptyPositionsPreferred() {\r\n        return emptyPositionsPreferred;\r\n    }\r\n\r\n    @Override\r\n    public abstract List<Animal> getOrderedAnimals(List<Animal> animals_listed);\r\n\r\n    /*public String toString() {\r\n        return new MapVisualiser(this).draw(lowerLeft, upperRight);\r\n    }*/\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java b/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java
+--- a/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java	
++++ b/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java	
+@@ -37,8 +37,8 @@
+         allPositions.sort((o1, o2) -> Float.compare(Math.abs(o1.getY() - midPoint), Math.abs(o2.getY() - midPoint)));
+         emptyPositionsPreferred = allPositions.subList(0, (int) Math.round(0.2*width*height));
+         emptyPositionsNotPreferred = allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
+-        emptyPositionsPreferredPrototype = emptyPositionsPreferred;
+-        emptyPositionsNotPreferredPrototype = emptyPositionsNotPreferred;
++        emptyPositionsPreferredPrototype = new ArrayList<>(emptyPositionsPreferred);
++        emptyPositionsNotPreferredPrototype = new ArrayList<>(emptyPositionsNotPreferred);
+     }
+     private void startMap(int width, int height){
+         for(int i = 0; i < width;i++){
+@@ -170,7 +170,7 @@
+         Vector2d position;
+         int number = random.nextInt(100);
+         if (number < 80){
+-            if(!emptyPositionsPreferred.isEmpty()) {
++            if(!(emptyPositionsPreferred.isEmpty())) {
+                 position = emptyPositionsPreferred.get(random.nextInt(emptyPositionsPreferred.size()));
+                 emptyPositionsPreferred.remove(position);
+             }
+@@ -180,7 +180,7 @@
+             }
+         }
+         else{
+-            if(!emptyPositionsNotPreferred.isEmpty()) {
++            if(!(emptyPositionsNotPreferred.isEmpty())) {
+                 position = emptyPositionsNotPreferred.get(random.nextInt(emptyPositionsNotPreferred.size()));
+                 emptyPositionsNotPreferred.remove(position);
+             }
+@@ -194,7 +194,7 @@
+     }
+     //sprawdzanie czy istnieją miejsca na trawę
+     public boolean freePlaces(){
+-            return  !emptyPositionsNotPreferred.isEmpty() || !emptyPositionsPreferred.isEmpty();
++            return  !(emptyPositionsNotPreferred.isEmpty()) || !(emptyPositionsPreferred.isEmpty());
+     }
+ 
+ 
+Index: Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package agh.ics.oop.model;\r\n\r\nimport agh.ics.oop.model.Vector2d;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Random;\r\n\r\npublic class Animal implements WorldElement {\r\n    private MapDirection orientation;\r\n    private Vector2d position;\r\n    private WorldMap map;\r\n    private Gene gene;\r\n    private int energy;\r\n\r\n    public Animal(WorldMap map){\r\n        this.orientation = MapDirection.NORTH;\r\n        this.position = new Vector2d(2, 2);\r\n        this.map = map;\r\n    }\r\n    public Animal(WorldMap map, Vector2d initialPosition, Gene gene) {\r\n        this.orientation = MapDirection.NORTH;\r\n        this.position = initialPosition;\r\n        this.map = map;\r\n        this.gene = gene;\r\n    }\r\n    public String toString() {\r\n        return switch(orientation){\r\n            case NORTH -> \"N\";\r\n            case NORTHEAST -> \"N-E\";\r\n            case EAST -> \"E\";\r\n            case SOUTHEAST -> \"S-E\";\r\n            case SOUTH -> \"S\";\r\n            case SOUTHWEST -> \"S-W\";\r\n            case WEST -> \"W\";\r\n            case NORTHWEST -> \"N-W\";\r\n\r\n        };\r\n\r\n    }\r\n    public boolean isAt(Vector2d second_position) {\r\n        return this.position.equals(second_position);\r\n    }\r\n    public Vector2d getPosition(){\r\n        return position;\r\n    }\r\n    public void setPosition(Vector2d position){\r\n        this.position = position;\r\n    }\r\n\r\n    public MapDirection getOrientation() {\r\n        return orientation;\r\n    }\r\n\r\n    public void setEnergy(int energy) {\r\n        this.energy = energy;\r\n    }\r\n\r\n    public int getEnergy() {\r\n        return energy;\r\n    }\r\n    public void addEnergy(int value) { this.energy += value; }\r\n    public void reduceEnergy(int value){ this.energy -= value; }\r\n    public Gene getGene() { return this.gene; }\r\n\r\n    public void move() {\r\n        this.orientation = this.orientation.rotate(this.gene.getCurrent());\r\n        Vector2d newPosition = new Vector2d(this.position.getX(), this.position.getY());\r\n        newPosition.add(this.orientation.toUnitVector());\r\n\r\n        if (this.map.canMoveTo(newPosition)){\r\n            this.position = newPosition;\r\n        }\r\n    }\r\n\r\n    public Vector2d wantToMove(){\r\n        this.orientation = this.orientation.rotate(this.gene.getCurrent());\r\n        Vector2d newPosition = new Vector2d(this.position.getX(), this.position.getY());\r\n        newPosition.add(this.orientation.toUnitVector());\r\n        return newPosition;\r\n    }\r\n\r\n    public Animal createChild(Animal other){\r\n        Gene childGene = this.gene.createChild(other.getGene(), this.energy, other.getEnergy());\r\n        Vector2d childPosition = this.position;\r\n        WorldMap childMap = this.map;\r\n        return new Animal(childMap, childPosition, childGene);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java b/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java
+--- a/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java	
++++ b/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java	
+@@ -12,11 +12,6 @@
+     private Gene gene;
+     private int energy;
+ 
+-    public Animal(WorldMap map){
+-        this.orientation = MapDirection.NORTH;
+-        this.position = new Vector2d(2, 2);
+-        this.map = map;
+-    }
+     public Animal(WorldMap map, Vector2d initialPosition, Gene gene) {
+         this.orientation = MapDirection.NORTH;
+         this.position = initialPosition;
+Index: .idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml b/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml
+--- a/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml	
++++ b/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml	
+@@ -4,8 +4,55 @@
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+       <sourceFolder url="file://$MODULE_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/test/java" isTestSource="true" />
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="module-library" scope="TEST">
++      <library name="JUnit4">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++    <orderEntry type="module-library" scope="TEST">
++      <library name="JUnit4">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++    <orderEntry type="module-library" scope="TEST">
++      <library name="JUnit4">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
++    <orderEntry type="module-library" scope="TEST">
++      <library name="JUnit5.8.1">
++        <CLASSES>
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.8.1/junit-jupiter-api-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.8.1/junit-platform-commons-1.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar!/" />
++          <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar!/" />
++        </CLASSES>
++        <JAVADOC />
++        <SOURCES />
++      </library>
++    </orderEntry>
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"c25f781c-3100-470c-8aef-1e29d5b4c076\" name=\"Changes\" comment=\"przygotowania do testowania wreszcie\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Gene.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Gene.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/WorldElement.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/WorldElement.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/test.txt\" beforeDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;WojtekWietrzny&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"353b76ff-7e57-4bd5-af87-d6bca1c7784d\" />\r\n        <option name=\"url\" value=\"https://github.com/WojtekWietrzny/PO_PROJEKT_WIETRZNY_DROZDZ_\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 7\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2aV5IpWkOTzeN0HU5DozdtHdfFK\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showExcludedFiles\" value=\"false\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"Display2\",\r\n    \"last_opened_file_path\": \"C:/Users/wojci/Git repositories/PO_PROJEKT_WIETRZNY_DROZDZ_\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"World\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"agh.ics.oop.World\" />\r\n      <module name=\"PO_PROJEKT_WIETRZNY_DROZDZ_\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"agh.ics.oop.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.World\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"c25f781c-3100-470c-8aef-1e29d5b4c076\" name=\"Changes\" comment=\"\" />\r\n      <created>1704390828714</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1704390828714</updated>\r\n      <workItem from=\"1704390829717\" duration=\"663000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"kolejne zmiany\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704564976921</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704564976921</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"reproduce fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704565270155</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704565270155</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"mapCell fix\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704565798230</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704565798230</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"przygotowania do testowania wreszcie\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704634326947</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704634326947</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"kolejne zmiany\" />\r\n    <MESSAGE value=\"reproduce fix\" />\r\n    <MESSAGE value=\"mapCell fix\" />\r\n    <MESSAGE value=\"przygotowania do testowania wreszcie\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"przygotowania do testowania wreszcie\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,15 +5,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="c25f781c-3100-470c-8aef-1e29d5b4c076" name="Changes" comment="przygotowania do testowania wreszcie">
++      <change afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/test/java/agh/ics/oop/TunnelWorldMapTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/AbstractWorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/AbstractWorldMap.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal$1.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Gene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Gene.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/WorldElement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/WorldElement.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/test.txt" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -63,6 +62,10 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Downloaded.Files.Path.Enabled": "false",
++    "Repository.Attach.Annotations": "false",
++    "Repository.Attach.JavaDocs": "false",
++    "Repository.Attach.Sources": "false",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "WebServerToolWindowFactoryState": "false",
+@@ -72,12 +75,61 @@
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+     "node.js.selected.package.tslint": "(autodetect)",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.2",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+-  <component name="RunManager">
+-    <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.World" />
++  <component name="RunManager" selected="JUnit.TunnelWorldMapTest.testTunnelWorldMap">
++    <configuration name="TunnelWorldMapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="agh.ics.oop.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="agh.ics.oop" />
++      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="TunnelWorldMapTest.testAbstractWorldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="agh.ics.oop.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="agh.ics.oop" />
++      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
++      <option name="METHOD_NAME" value="testAbstractWorldMap" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="TunnelWorldMapTest.testAdvanceAnimals" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="agh.ics.oop.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="agh.ics.oop" />
++      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
++      <option name="METHOD_NAME" value="testAdvanceAnimals" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="TunnelWorldMapTest.testSphereWorldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
+       <extension name="coverage">
+         <pattern>
+@@ -85,13 +137,37 @@
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
++      <option name="PACKAGE_NAME" value="agh.ics.oop" />
++      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
++      <option name="METHOD_NAME" value="testSphereWorldMap" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="TunnelWorldMapTest.testTunnelWorldMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="agh.ics.oop.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="agh.ics.oop" />
++      <option name="MAIN_CLASS_NAME" value="agh.ics.oop.TunnelWorldMapTest" />
++      <option name="METHOD_NAME" value="testTunnelWorldMap" />
++      <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.World" />
++        <item itemvalue="JUnit.TunnelWorldMapTest.testTunnelWorldMap" />
++        <item itemvalue="JUnit.TunnelWorldMapTest.testSphereWorldMap" />
++        <item itemvalue="JUnit.TunnelWorldMapTest.testAbstractWorldMap" />
++        <item itemvalue="JUnit.TunnelWorldMapTest" />
++        <item itemvalue="JUnit.TunnelWorldMapTest.testAdvanceAnimals" />
+       </list>
+     </recent_temporary>
+   </component>
