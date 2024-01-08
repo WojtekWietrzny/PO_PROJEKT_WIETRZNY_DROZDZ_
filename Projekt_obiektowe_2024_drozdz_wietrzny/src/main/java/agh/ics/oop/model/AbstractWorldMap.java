@@ -33,11 +33,20 @@ public abstract class AbstractWorldMap implements WorldMap{
         float midPoint = Math.round(height/2);
         startMap(width, height);
         allPositions.sort((o1, o2) -> Float.compare(Math.abs(o1.getY() - midPoint), Math.abs(o2.getY() - midPoint)));
-        emptyPositionsPreferred = allPositions.subList(0, (int) Math.round(0.2*width*height));
-        emptyPositionsNotPreferred = allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
+        //emptyPositionsPreferred = allPositions.subList(0, (int) Math.round(0.2*width*height));
+        //emptyPositionsNotPreferred = allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
 
         for(Vector2d position : emptyPositionsPreferred){
             this.elements.get(position).setJungle();
+        }
+
+        for(int i = 0; i < (int) Math.round(0.2*width*height);i++){
+            Vector2d position = allPositions.get(i);
+            emptyPositionsPreferred.add(position);
+        }
+        for(int j = (int) Math.round(0.2*width*height); j < allPositions.size();j++){
+            Vector2d position = allPositions.get(j);
+            emptyPositionsNotPreferred.add(position);
         }
 
     }
@@ -85,7 +94,6 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
-
     public boolean canMoveTo(Vector2d position){
         return position.follows(bounds.lowerLeft()) && position.precedes(bounds.upperRight());
     }
@@ -98,6 +106,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             notifyObservers("Placed animal at " + animal.getPosition());
         }
     }
+
     public void addGrass(Vector2d position){
             MapCell cell = elements.get(position);
             cell.growGrass();
