@@ -54,10 +54,10 @@ public class MapCell {
     public void eatGrass(){
         grass=false;
     }
-    void upDeathCounter(){
+    public void upDeathCounter(){
         deathCounter += 1;
     }
-    void setDeathCounter(int newDeathCounter){
+    public void setDeathCounter(int newDeathCounter){
         this.deathCounter = newDeathCounter;
     }
 
