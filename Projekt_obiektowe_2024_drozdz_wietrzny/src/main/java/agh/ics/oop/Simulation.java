@@ -8,7 +8,7 @@ public class Simulation implements Runnable{
     private SimulationParameters simulationParameters;
     private AbstractWorldMap worldMap;
 
-    public Simulation(int width, int height, SimulationParameters allGenericParameters){
+    public Simulation(SimulationParameters allGenericParameters){
         this.currentDay = 0;
         this.simulationParameters = allGenericParameters;
 
@@ -16,9 +16,9 @@ public class Simulation implements Runnable{
         // + statystyki
 
         if (this.simulationParameters.mapType() == MapType.SphereMap){
-            this.worldMap = new SphereWorldMap(width, height, simulationParameters.behaviourType(), simulationParameters.genomeSize());
+            this.worldMap = new SphereWorldMap(simulationParameters.width(), simulationParameters.height(), simulationParameters.behaviourType(), simulationParameters.genomeSize());
         }else{
-            this.worldMap = new TunnelWorldMap(width, height, simulationParameters.behaviourType(), simulationParameters.genomeSize());
+            this.worldMap = new TunnelWorldMap(simulationParameters.width(), simulationParameters.height(), simulationParameters.behaviourType(), simulationParameters.genomeSize());
         }
 
         ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();

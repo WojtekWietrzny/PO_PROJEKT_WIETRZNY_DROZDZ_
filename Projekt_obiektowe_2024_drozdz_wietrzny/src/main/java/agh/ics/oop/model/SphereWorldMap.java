@@ -58,11 +58,6 @@ public class SphereWorldMap extends AbstractWorldMap {
     }
 
     @Override
-    public Object getId() {
-        return null;
-    }
-
-    @Override
     public List<Animal> getOrderedAnimals(List<Animal> animals_listed) {
         return null;
     }

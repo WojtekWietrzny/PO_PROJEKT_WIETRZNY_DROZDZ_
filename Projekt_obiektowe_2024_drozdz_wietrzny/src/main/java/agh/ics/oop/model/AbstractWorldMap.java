@@ -23,6 +23,8 @@ public abstract class AbstractWorldMap implements WorldMap{
     private final int genomeSize;
     protected final Boundary bounds;
     private final List<MapChangeListener> observers = new ArrayList<>();
+    private static int nextId = 0;
+    private final int id = nextId++;
 
     public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){
         Vector2d lowerLeft = new Vector2d(0,0);
@@ -249,6 +251,11 @@ public abstract class AbstractWorldMap implements WorldMap{
     @Override
     public Boundary getCurrentBounds() {
         return bounds;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     public String toString() {

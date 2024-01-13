@@ -7,15 +7,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class SimulationEngine {
+public class SimulationEngine implements Runnable{
     private ArrayList<Simulation> simulations;
     private ArrayList<Thread> threads = new ArrayList<>();
     private ExecutorService executorService = Executors.newFixedThreadPool(4);
 
-    public SimulationEngine(ArrayList<Simulation> simulationss){
-        this.simulations = simulationss;
+    public SimulationEngine(ArrayList<Simulation> simulations){
+        this.simulations = simulations;
     }
 
+    @Override
+    public void run() {
+        runAsyncInThreadPool();
+    }
     public void runSync(){
         for(Simulation simulation : simulations){
             simulation.run();

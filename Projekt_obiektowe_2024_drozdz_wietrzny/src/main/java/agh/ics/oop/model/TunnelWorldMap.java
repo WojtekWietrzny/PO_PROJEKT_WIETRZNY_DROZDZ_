@@ -89,10 +89,6 @@ public class TunnelWorldMap extends AbstractWorldMap{
         return null;
     }
 
-    @Override
-    public Object getId() {
-        return null;
-    }
 
     @Override
     public List<Animal> getOrderedAnimals(List<Animal> animals_listed) {
