@@ -1,12 +1,8 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.BehaviourType;
-import agh.ics.oop.model.ConsoleMapDisplay;
-import agh.ics.oop.model.MapType;
+import agh.ics.oop.model.enums.BehaviourType;
+import agh.ics.oop.model.enums.MapType;
 import agh.ics.oop.model.SimulationParameters;
-
-import static agh.ics.oop.model.BehaviourType.CompletePredestination;
-import static agh.ics.oop.model.MapType.SphereMap;
 
 public class World {
     public static void main(String args[]){

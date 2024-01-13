@@ -1,6 +1,6 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.util.MapVisualiser;
+import agh.ics.oop.model.enums.BehaviourType;
 
 import java.util.*;
 

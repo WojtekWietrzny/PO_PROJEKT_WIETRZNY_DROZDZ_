@@ -1,10 +1,9 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import agh.ics.oop.model.enums.BehaviourType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -77,7 +76,7 @@ public class MapCellTest {
 
     @Test
     public void testAddAndRemoveObject() {
-        SphereWorldMap map = new SphereWorldMap(10,10,BehaviourType.CompletePredestination, 8);
+        SphereWorldMap map = new SphereWorldMap(10,10, BehaviourType.CompletePredestination, 8);
         Animal animal = new Animal(map);
         assertTrue(mapCell.getObjects().isEmpty());
 

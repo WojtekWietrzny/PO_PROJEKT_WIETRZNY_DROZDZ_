@@ -1,6 +1,6 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.MapDirection;
+import agh.ics.oop.model.enums.MapDirection;
 import agh.ics.oop.model.Vector2d;
 import org.junit.jupiter.api.Test;
 

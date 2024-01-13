@@ -1,9 +1,10 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import agh.ics.oop.model.enums.BehaviourType;
 import org.junit.jupiter.api.Test;
 
-import static agh.ics.oop.model.BehaviourType.CompletePredestination;
+import static agh.ics.oop.model.enums.BehaviourType.CompletePredestination;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TunnelWorldMapTest {

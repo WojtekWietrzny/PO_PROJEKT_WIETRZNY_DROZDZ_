@@ -1,9 +1,6 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.Vector2d;
-
-import java.util.ArrayList;
-import java.util.Random;
+import agh.ics.oop.model.enums.MapDirection;
 
 public class Animal implements WorldElement {
     private MapDirection orientation;

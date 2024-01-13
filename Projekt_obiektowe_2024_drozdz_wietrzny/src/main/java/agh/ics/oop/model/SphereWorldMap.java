@@ -1,6 +1,7 @@
 package agh.ics.oop.model;
 
-import agh.ics.oop.model.*;
+import agh.ics.oop.model.enums.BehaviourType;
+import agh.ics.oop.model.enums.MoveDirection;
 
 import java.util.List;
 

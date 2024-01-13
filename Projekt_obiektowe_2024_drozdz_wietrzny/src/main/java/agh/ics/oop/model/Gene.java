@@ -1,5 +1,7 @@
 package agh.ics.oop.model;
 
+import agh.ics.oop.model.enums.BehaviourType;
+
 import java.util.ArrayList;
 import java.util.Random;
 

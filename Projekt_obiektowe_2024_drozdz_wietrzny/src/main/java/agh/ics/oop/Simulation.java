@@ -1,6 +1,7 @@
 package agh.ics.oop;
 
 import agh.ics.oop.model.*;
+import agh.ics.oop.model.enums.MapType;
 
 public class Simulation implements Runnable{
     private int currentDay;
