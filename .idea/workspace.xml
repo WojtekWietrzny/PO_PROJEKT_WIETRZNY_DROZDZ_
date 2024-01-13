@@ -4,29 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da48f79f-943e-4e40-b7f7-2d57d55e7759" name="Changes" comment="Added enums folder">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_01_45__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_01_45__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" afterDir="false" />
+    <list default="true" id="da48f79f-943e-4e40-b7f7-2d57d55e7759" name="Changes" comment="Map drawing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapChangeListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/util/MapVisualizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/AbstractWorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/AbstractWorldMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/Animal.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/MapCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/MapCell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/MapChangeListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/MapChangeListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/SphereWorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/SphereWorldMap.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/TunnelWorldMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/TunnelWorldMap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/util/MapVisualiser.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +175,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704390828714</updated>
       <workItem from="1704390829717" duration="663000" />
-      <workItem from="1705165313026" duration="8820000" />
+      <workItem from="1705165313026" duration="10289000" />
     </task>
     <task id="LOCAL-00001" summary="kolejne zmiany">
       <option name="closed" value="true" />
@@ -251,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705157269851</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Map drawing">
+      <option name="closed" value="true" />
+      <created>1705177420727</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705177420727</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +274,8 @@
     <MESSAGE value="world update" />
     <MESSAGE value="some fix" />
     <MESSAGE value="Added enums folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added enums folder" />
+    <MESSAGE value="Map drawing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Map drawing" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

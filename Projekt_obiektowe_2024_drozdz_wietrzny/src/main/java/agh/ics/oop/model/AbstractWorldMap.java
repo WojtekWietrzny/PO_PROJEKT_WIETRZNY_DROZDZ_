@@ -62,9 +62,9 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
-    protected void notifyObservers(String message) {
+    protected void notifyObservers() {
         for (MapChangeListener observer : observers) {
-            observer.mapChanged(this, message);
+            observer.mapChanged(this);
         }
     }
     public  void addObserver(MapChangeListener observer){
@@ -83,6 +83,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             Animal animal = new Animal(this, new Vector2d(x, y), Gene.generateRandomGene(this.genomeSize, this.behaviourType));
             place(animal);
         }
+        notifyObservers();
     }
 
     public void advanceAnimals(){
@@ -90,9 +91,10 @@ public abstract class AbstractWorldMap implements WorldMap{
             Vector2d positionToCheck = animal.wantToMove();
             if (canMoveTo(positionToCheck)){
                 animal.setPosition(positionToCheck);
-                notifyObservers("Moved animal to " + animal.getPosition());
+
             }
         }
+        notifyObservers();
     }
 
     public boolean canMoveTo(Vector2d position){
@@ -104,7 +106,6 @@ public abstract class AbstractWorldMap implements WorldMap{
             elements.get(animal.getPosition()).addAnimal(animal);
             animalsQuantity += 1;
             animals.add(animal);
-            notifyObservers("Placed animal at " + animal.getPosition());
         }
     }
 
