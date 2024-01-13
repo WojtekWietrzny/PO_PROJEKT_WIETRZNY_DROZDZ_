@@ -38,6 +38,7 @@ public class Simulation implements Runnable{
             this.worldMap.eat();
             this.worldMap.reproduce();
             this.worldMap.growGrass(simulationParameters.plantGrowthRate());
+            this.currentDay += 1;
         }
     }
 }

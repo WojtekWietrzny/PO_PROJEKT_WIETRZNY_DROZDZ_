@@ -23,7 +23,6 @@ public class MapCellTest {
         assertFalse(mapCell.isJungle());
         assertFalse(mapCell.isGrassPresent());
         assertEquals(0, mapCell.getDeathCounter());
-        assertTrue(mapCell.getObjects().isEmpty());
         assertTrue(mapCell.getAnimals().isEmpty());
     }
 
@@ -75,32 +74,16 @@ public class MapCellTest {
     }
 
     @Test
-    public void testAddAndRemoveObject() {
-        SphereWorldMap map = new SphereWorldMap(10,10, BehaviourType.CompletePredestination, 8);
-        Animal animal = new Animal(map);
-        assertTrue(mapCell.getObjects().isEmpty());
-
-        mapCell.addObject(animal);
-        assertTrue(mapCell.getObjects().contains(animal));
-
-        mapCell.removeObject(animal);
-        assertFalse(mapCell.getObjects().contains(animal));
-    }
-
-    @Test
     public void testAddAndRemoveAnimal() {
         SphereWorldMap map = new SphereWorldMap(10,10,BehaviourType.CompletePredestination, 8);
         Animal animal = new Animal(map);
         assertTrue(mapCell.getAnimals().isEmpty());
-        assertTrue(mapCell.getObjects().isEmpty());
 
         mapCell.addAnimal(animal);
         assertTrue(mapCell.getAnimals().contains(animal));
-        assertTrue(mapCell.getObjects().contains(animal));
 
         mapCell.removeAnimal(animal);
         assertFalse(mapCell.getAnimals().contains(animal));
-        assertFalse(mapCell.getObjects().contains(animal));
     }
 
     @Test
