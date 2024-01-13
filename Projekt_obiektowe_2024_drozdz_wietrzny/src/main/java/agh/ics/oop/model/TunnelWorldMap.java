@@ -71,7 +71,7 @@ public class TunnelWorldMap extends AbstractWorldMap{
 
     @Override
     public Boundary getCurrentBounds() {
-        return null;
+        return bounds;
     }
 
     @Override

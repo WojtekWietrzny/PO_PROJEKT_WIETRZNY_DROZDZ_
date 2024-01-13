@@ -1,6 +1,7 @@
 package agh.ics.oop.model;
 
 import agh.ics.oop.model.enums.BehaviourType;
+import agh.ics.oop.model.util.MapVisualizer;
 
 import java.util.*;
 
@@ -224,6 +225,10 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
+    public MapCell getElement(Vector2d position) {
+        return elements.get(position);
+    }
+
     public int getAnimalsQuantity(){
         return animalsQuantity;
     }
@@ -240,7 +245,12 @@ public abstract class AbstractWorldMap implements WorldMap{
     @Override
     public abstract List<Animal> getOrderedAnimals(List<Animal> animals_listed);
 
-    /*public String toString() {
-        return new MapVisualiser(this).draw(lowerLeft, upperRight);
-    }*/
+    @Override
+    public Boundary getCurrentBounds() {
+        return bounds;
+    }
+
+    public String toString() {
+        return new MapVisualizer(this).draw(this.getCurrentBounds().lowerLeft(), getCurrentBounds().upperRight());
+    }
 }

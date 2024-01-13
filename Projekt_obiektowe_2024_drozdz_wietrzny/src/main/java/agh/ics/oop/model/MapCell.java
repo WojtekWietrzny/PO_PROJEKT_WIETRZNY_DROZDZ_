@@ -37,6 +37,10 @@ public class MapCell {
         return tunnelDestination;
     }
 
+    public Animal getFirstAnimal(){
+        return this.animals.get(0);
+    }
+
     public boolean isJungle(){
         return this.jungle;
     }
