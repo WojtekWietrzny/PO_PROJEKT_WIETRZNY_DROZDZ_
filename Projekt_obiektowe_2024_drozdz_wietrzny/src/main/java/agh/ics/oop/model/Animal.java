@@ -22,18 +22,19 @@ public class Animal implements WorldElement {
     }
     public String toString() {
         return switch(orientation){
-            case NORTH -> "N";
-            case NORTHEAST -> "N-E";
-            case EAST -> "E";
-            case SOUTHEAST -> "S-E";
-            case SOUTH -> "S";
-            case SOUTHWEST -> "S-W";
-            case WEST -> "W";
-            case NORTHWEST -> "N-W";
+            case NORTH -> "↑";
+            case NORTHEAST -> "↗";
+            case EAST -> "↓";
+            case SOUTHEAST -> "↘";
+            case SOUTH -> "→";
+            case SOUTHWEST -> "↙";
+            case WEST -> "←";
+            case NORTHWEST -> "↖";
 
         };
 
     }
+
     public boolean isAt(Vector2d second_position) {
         return this.position.equals(second_position);
     }

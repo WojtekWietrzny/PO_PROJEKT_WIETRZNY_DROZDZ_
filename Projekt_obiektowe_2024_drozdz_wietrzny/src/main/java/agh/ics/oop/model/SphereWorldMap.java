@@ -32,13 +32,14 @@ public class SphereWorldMap extends AbstractWorldMap {
             }
 
             animal.setPosition(positionToCheck);
-            notifyObservers("Moved animal to " + animal.getPosition());
+
         }
+        notifyObservers();
     }
 
     @Override
     public Boundary getCurrentBounds() {
-        return null;
+        return bounds;
     }
 
     @Override
@@ -53,11 +54,6 @@ public class SphereWorldMap extends AbstractWorldMap {
 
     @Override
     public WorldElement objectAt(Vector2d position) {
-        return null;
-    }
-
-    @Override
-    public Object getId() {
         return null;
     }
 

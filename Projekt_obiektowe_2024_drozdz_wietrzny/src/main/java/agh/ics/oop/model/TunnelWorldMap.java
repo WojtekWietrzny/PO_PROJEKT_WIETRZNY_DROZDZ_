@@ -65,13 +65,13 @@ public class TunnelWorldMap extends AbstractWorldMap{
             else if (canMoveTo(positionToCheck)){
                 animal.setPosition(positionToCheck);
             }
-            notifyObservers("Moved animal to " + animal.getPosition());
         }
+        notifyObservers();
     }
 
     @Override
     public Boundary getCurrentBounds() {
-        return null;
+        return bounds;
     }
 
     @Override
@@ -89,10 +89,6 @@ public class TunnelWorldMap extends AbstractWorldMap{
         return null;
     }
 
-    @Override
-    public Object getId() {
-        return null;
-    }
 
     @Override
     public List<Animal> getOrderedAnimals(List<Animal> animals_listed) {

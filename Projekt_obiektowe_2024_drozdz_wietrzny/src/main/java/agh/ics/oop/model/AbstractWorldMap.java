@@ -1,6 +1,7 @@
 package agh.ics.oop.model;
 
 import agh.ics.oop.model.enums.BehaviourType;
+import agh.ics.oop.model.util.MapVisualizer;
 
 import java.util.*;
 
@@ -22,6 +23,8 @@ public abstract class AbstractWorldMap implements WorldMap{
     private final int genomeSize;
     protected final Boundary bounds;
     private final List<MapChangeListener> observers = new ArrayList<>();
+    private static int nextId = 0;
+    private final int id = nextId++;
 
     public AbstractWorldMap(int width, int height, BehaviourType behaviourType, int genomeSize){
         Vector2d lowerLeft = new Vector2d(0,0);
@@ -61,9 +64,9 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
-    protected void notifyObservers(String message) {
+    protected void notifyObservers() {
         for (MapChangeListener observer : observers) {
-            observer.mapChanged(this, message);
+            observer.mapChanged(this);
         }
     }
     public  void addObserver(MapChangeListener observer){
@@ -82,6 +85,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             Animal animal = new Animal(this, new Vector2d(x, y), Gene.generateRandomGene(this.genomeSize, this.behaviourType));
             place(animal);
         }
+        notifyObservers();
     }
 
     public void advanceAnimals(){
@@ -89,9 +93,10 @@ public abstract class AbstractWorldMap implements WorldMap{
             Vector2d positionToCheck = animal.wantToMove();
             if (canMoveTo(positionToCheck)){
                 animal.setPosition(positionToCheck);
-                notifyObservers("Moved animal to " + animal.getPosition());
+
             }
         }
+        notifyObservers();
     }
 
     public boolean canMoveTo(Vector2d position){
@@ -103,7 +108,6 @@ public abstract class AbstractWorldMap implements WorldMap{
             elements.get(animal.getPosition()).addAnimal(animal);
             animalsQuantity += 1;
             animals.add(animal);
-            notifyObservers("Placed animal at " + animal.getPosition());
         }
     }
 
@@ -224,6 +228,10 @@ public abstract class AbstractWorldMap implements WorldMap{
         }
     }
 
+    public MapCell getElement(Vector2d position) {
+        return elements.get(position);
+    }
+
     public int getAnimalsQuantity(){
         return animalsQuantity;
     }
@@ -240,7 +248,17 @@ public abstract class AbstractWorldMap implements WorldMap{
     @Override
     public abstract List<Animal> getOrderedAnimals(List<Animal> animals_listed);
 
-    /*public String toString() {
-        return new MapVisualiser(this).draw(lowerLeft, upperRight);
-    }*/
+    @Override
+    public Boundary getCurrentBounds() {
+        return bounds;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public String toString() {
+        return new MapVisualizer(this).draw(this.getCurrentBounds().lowerLeft(), getCurrentBounds().upperRight());
+    }
 }
