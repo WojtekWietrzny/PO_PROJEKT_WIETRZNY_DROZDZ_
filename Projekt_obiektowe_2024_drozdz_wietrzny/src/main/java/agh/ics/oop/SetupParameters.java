@@ -4,7 +4,7 @@ import agh.ics.oop.model.enums.BehaviourType;
 import agh.ics.oop.model.enums.MapType;
 
 public class SetupParameters {
-    private final String configName;
+    private final String configurationName;
     private final MapType mapType;
     private final BehaviourType behaviourType;
     private final int width;
@@ -19,29 +19,29 @@ public class SetupParameters {
     private final int maxMutations;
     private final int genomeSize;
 
-    public SetupParameters(String configName, String[] setup) throws Exception{
-        this.configName = configName;
-        switch(setup[0]){
+    public SetupParameters(String[] setup) throws Exception{
+        this.configurationName = setup[0];
+        switch(setup[1]){
             case "TunnelMap" -> this.mapType = MapType.TunnelMap;
             case "SphereMap" -> this.mapType = MapType.SphereMap;
             default -> throw new Exception("Choose Correct Map Type");
         }
-        switch (setup[1]){
+        switch (setup[2]){
             case "CompletePredestination" -> this.behaviourType = BehaviourType.CompletePredestination;
             case "BitofCraziness" -> this.behaviourType = BehaviourType.BitofCraziness;
             default -> throw new Exception("Choose Correct Behaviour Type");
         }
-        this.width = Integer.parseInt(setup[2]);
-        this.height = Integer.parseInt(setup[3]);
-        this.startingPlantAmount = Integer.parseInt(setup[4]);
-        this.plantGrowthRate = Integer.parseInt(setup[5]);
-        this.startingAnimalAmount = Integer.parseInt(setup[6]);
-        this.startingAnimalEnergy = Integer.parseInt(setup[7]);
-        this.energyToReproduce = Integer.parseInt(setup[8]);
-        this.energyConsumedByReproduction = Integer.parseInt(setup[9]);
-        this.minMutations = Integer.parseInt(setup[10]);
-        this.maxMutations = Integer.parseInt(setup[11]);
-        this.genomeSize = Integer.parseInt(setup[12]);
+        this.width = Integer.parseInt(setup[3]);
+        this.height = Integer.parseInt(setup[4]);
+        this.startingPlantAmount = Integer.parseInt(setup[5]);
+        this.plantGrowthRate = Integer.parseInt(setup[6]);
+        this.startingAnimalAmount = Integer.parseInt(setup[7]);
+        this.startingAnimalEnergy = Integer.parseInt(setup[8]);
+        this.energyToReproduce = Integer.parseInt(setup[9]);
+        this.energyConsumedByReproduction = Integer.parseInt(setup[10]);
+        this.minMutations = Integer.parseInt(setup[11]);
+        this.maxMutations = Integer.parseInt(setup[12]);
+        this.genomeSize = Integer.parseInt(setup[13]);
 
         if (width < 0 || width > 10000){
             throw new Exception("Choose width from 1 to 9999");
@@ -78,8 +78,8 @@ public class SetupParameters {
         }
     }
 
-    public String getConfigName() {
-        return configName;
+    public String getConfigurationName() {
+        return configurationName;
     }
 
     public MapType getMapType() {

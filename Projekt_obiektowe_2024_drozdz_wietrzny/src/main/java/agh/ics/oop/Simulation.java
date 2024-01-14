@@ -5,12 +5,18 @@ import agh.ics.oop.model.enums.MapType;
 
 public class Simulation implements Runnable{
     private int currentDay;
-    private SimulationParameters simulationParameters;
+    private SetupParameters setupParameters;
+    private SimulationParameters  simulationParameters;
     private AbstractWorldMap worldMap;
 
-    public Simulation(SimulationParameters allGenericParameters){
+    //SimulationEngine powinien korzystać jakoś z klasy Settings
+    public Simulation(SetupParameters allSetupParameters){
         this.currentDay = 0;
-        this.simulationParameters = allGenericParameters;
+        this.setupParameters = allSetupParameters;
+        this.simulationParameters = new SimulationParameters(setupParameters.getWidth(), setupParameters.getHeight(), setupParameters.getMapType(),
+                setupParameters.getBehaviourType(), setupParameters.getStartingPlantAmount(), setupParameters.getPlantGrowthRate(), setupParameters.getStartingAnimalAmount(),
+                setupParameters.getStartingAnimalEnergy(), setupParameters.getEnergyToReproduce(), setupParameters.getEnergyConsumedByReproduction(), setupParameters.getMinMutations(), allSetupParameters.getMaxMutations(), setupParameters.getGenomeSize());
+
 
         //tu będą jeszcze przekazywane ustawienia z klasy settings zapisującej te konfiguracje jakoś do pliku i czytającej z niego
         // + statystyki

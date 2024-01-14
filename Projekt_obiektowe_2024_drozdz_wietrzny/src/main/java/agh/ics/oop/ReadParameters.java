@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.util.*;
 
 public class ReadParameters {
-    private static final String FILE = "src/main/resources/setup.csv";
+    private static final String FILE = "Projekt_obiektowe_2024_drozdz_wietrzny/src/main/resources/setup.csv";
 
     public static List<String[]> read() throws FileNotFoundException {
         List<String[]> options = new ArrayList<>();
@@ -14,17 +14,17 @@ public class ReadParameters {
         try (Scanner scanner = new Scanner(new File(FILE))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                options.add(line.split(","));
+                options.add(line.split(" "));
             }
         }
 
         return options;
     }
-    public static void insertData(String identifier, String[] settings) throws Exception {
+    public static void insertData(String[] settings) throws Exception {
         FileWriter fileWriter = new FileWriter(FILE, true);
 
-        String line = String.join(",", settings);
-        line = identifier + "," + line + "\n";
+        String line = String.join(" ", settings);
+        line =line + "\n";
         fileWriter.write(line);
 
         fileWriter.flush();
@@ -34,7 +34,7 @@ public class ReadParameters {
         List<String[]> setups = read();
         for (String[] setup : setups) {
             if (setup[0].equals(identifier)) {
-                return Arrays.copyOfRange(setup, 1, setup.length);
+                return Arrays.copyOfRange(setup, 0, setup.length);
             }
         }
         return null;
