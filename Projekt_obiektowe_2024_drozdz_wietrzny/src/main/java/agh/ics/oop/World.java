@@ -8,19 +8,38 @@ import agh.ics.oop.model.enums.MapType;
 import agh.ics.oop.model.SimulationParameters;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class World {
-    public static void main(String[] args) {
-        List<Vector2d> positions = List.of(new Vector2d(2, 2), new Vector2d(3, 4)
-        );
+    public static void main(String[] args) throws Exception {
+        System.out.println(args[0]);
+        try {
+            List<String[]> existingSetups = ReadParameters.read();
+
+            boolean configExists = false;
+            for (String[] setup : existingSetups) {
+                if (setup.length > 0 && setup[0].equals(args[0])) {
+                    configExists = true;
+                    break;
+                }
+            }
+
+            if (!configExists) {
+                ReadParameters.insertData(args);
+                System.out.println("New configuration saved successfully.");
+            } else {
+                System.out.println("Configuration with the same identifier already exists.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         int numberOfSimulations = 1000;
         ArrayList<Simulation> simulations = new ArrayList<>(numberOfSimulations);
         for (int i = 0; i < numberOfSimulations; i++) {
-            SimulationParameters parameters = new SimulationParameters(10,10,MapType.SphereMap, BehaviourType.CompletePredestination,
-                    10, 0, 10, 10, 5, 3,
-                    1, 3, 7);
+            SetupParameters parameters = new SetupParameters(args);
             Simulation simulation = new Simulation(parameters);
             simulations.add(simulation);
         }
