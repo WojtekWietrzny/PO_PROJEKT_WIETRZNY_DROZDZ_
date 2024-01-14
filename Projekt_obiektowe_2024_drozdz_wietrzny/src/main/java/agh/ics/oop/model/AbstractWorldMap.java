@@ -263,7 +263,8 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
 
     public int getGrassCount(){
-        int positionsAmount = bounds.upperRight().getX() * bounds.upperRight().getY() - emptyPositionsPreferred.size() - emptyPositionsNotPreferred.size();
+        int positionsAmount = bounds.upperRight().getX() * bounds.upperRight().getY();
+        return positionsAmount  - emptyPositionsPreferred.size() - emptyPositionsNotPreferred.size();
     }
 
     public String toString() {
