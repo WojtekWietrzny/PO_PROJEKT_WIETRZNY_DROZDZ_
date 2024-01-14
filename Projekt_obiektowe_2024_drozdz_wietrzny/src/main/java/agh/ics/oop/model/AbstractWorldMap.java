@@ -251,12 +251,20 @@ public abstract class AbstractWorldMap implements WorldMap{
         return id;
     }
 
-    @Override
     public void move(Animal animal, Vector2d newPosition){
         Vector2d oldPosition = animal.getPosition();
         this.elements.get(oldPosition).removeAnimal(animal);
         animal.setPosition(newPosition);
         this.elements.get(newPosition).addAnimal(animal);
+    }
+
+    public int getAnimalCount(){
+        return animalsQuantity;
+    }
+
+    public int getGrassCount(){
+        int positionsAmount = bounds.upperRight().getX() * bounds.upperRight().getY();
+        return positionsAmount  - emptyPositionsPreferred.size() - emptyPositionsNotPreferred.size();
     }
 
     public String toString() {

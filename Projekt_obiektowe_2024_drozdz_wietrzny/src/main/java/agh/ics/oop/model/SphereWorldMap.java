@@ -57,6 +57,14 @@ public class SphereWorldMap extends AbstractWorldMap {
         return null;
     }
 
+    //@Override
+    public void move(Animal animal, Vector2d newPosition){
+        Vector2d oldPosition = animal.getPosition();
+        this.elements.get(oldPosition).removeAnimal(animal);
+        animal.setPosition(newPosition);
+        this.elements.get(newPosition).addAnimal(animal);
+    }
+
     @Override
     public boolean canMoveTo(Vector2d position) {
         return position.getY() >= super.bounds.lowerLeft().getY() && position.getY() <= super.bounds.upperRight().getY();
