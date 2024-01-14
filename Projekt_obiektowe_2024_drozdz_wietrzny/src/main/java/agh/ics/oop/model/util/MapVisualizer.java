@@ -45,13 +45,13 @@ public class MapVisualizer {
     public String draw(Vector2d lowerLeft, Vector2d upperRight) {
         StringBuilder builder = new StringBuilder();
         builder.append(" y\\x ");
-        for (int j = lowerLeft.getX() + 1; j < upperRight.getX() + 1; j++) {
+        for (int j = lowerLeft.getX(); j < upperRight.getX(); j++) {
             builder.append(String.format("%2d", j));
         }
         builder.append(System.lineSeparator());
 
-        for (int i = lowerLeft.getY(); i < upperRight.getY(); i++) {
-            builder.append(String.format("%3d: ", (upperRight.getY()-i)));
+        for (int i = upperRight.getY() -1; i >= lowerLeft.getY() ; i--) {
+            builder.append(String.format("%3d: ", (i)));
             for (int j = lowerLeft.getX(); j < upperRight.getX(); j++) {
                 Vector2d position = new Vector2d(j,i);
                 MapCell cell = map.getElement(position);

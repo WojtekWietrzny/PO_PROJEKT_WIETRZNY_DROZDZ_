@@ -36,7 +36,7 @@ public class World {
             e.printStackTrace();
         }
 
-        int numberOfSimulations = 1000;
+        int numberOfSimulations = 1;
         ArrayList<Simulation> simulations = new ArrayList<>(numberOfSimulations);
         for (int i = 0; i < numberOfSimulations; i++) {
             SetupParameters parameters = new SetupParameters(args);
