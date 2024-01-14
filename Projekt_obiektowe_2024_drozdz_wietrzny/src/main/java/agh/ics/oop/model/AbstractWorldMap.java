@@ -258,6 +258,14 @@ public abstract class AbstractWorldMap implements WorldMap{
         this.elements.get(newPosition).addAnimal(animal);
     }
 
+    public int getAnimalCount(){
+        return animalsQuantity;
+    }
+
+    public int getGrassCount(){
+        int positionsAmount = bounds.upperRight().getX() * bounds.upperRight().getY() - emptyPositionsPreferred.size() - emptyPositionsNotPreferred.size();
+    }
+
     public String toString() {
         return new MapVisualizer(this).draw(this.getCurrentBounds().lowerLeft(), getCurrentBounds().upperRight());
     }
