@@ -31,7 +31,7 @@ public class SphereWorldMap extends AbstractWorldMap {
                 animal.setOrientation(animal.getOrientation().opposite());
             }
 
-            animal.setPosition(positionToCheck);
+            move(animal, positionToCheck);
 
         }
         notifyObservers();
@@ -40,11 +40,6 @@ public class SphereWorldMap extends AbstractWorldMap {
     @Override
     public Boundary getCurrentBounds() {
         return bounds;
-    }
-
-    @Override
-    public void move(Animal animal, MoveDirection direction) {
-
     }
 
     @Override

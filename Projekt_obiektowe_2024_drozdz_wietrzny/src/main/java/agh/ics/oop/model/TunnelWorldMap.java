@@ -63,7 +63,7 @@ public class TunnelWorldMap extends AbstractWorldMap{
                 animal.setPosition(this.elements.get(positionToCheck).getTunnelDestination());
             }
             else if (canMoveTo(positionToCheck)){
-                animal.setPosition(positionToCheck);
+                move(animal, positionToCheck);
             }
         }
         notifyObservers();
@@ -72,11 +72,6 @@ public class TunnelWorldMap extends AbstractWorldMap{
     @Override
     public Boundary getCurrentBounds() {
         return bounds;
-    }
-
-    @Override
-    public void move(Animal animal, MoveDirection direction) {
-
     }
 
     @Override

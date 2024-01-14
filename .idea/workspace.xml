@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da48f79f-943e-4e40-b7f7-2d57d55e7759" name="Changes" comment="readParameters class">
-      <change beforePath="$PROJECT_DIR$/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_01_45_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_01_45__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/ReadParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/ReadParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SetupParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SetupParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/WorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/SetupParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/SetupParameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/Simulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/Simulation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/World.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +67,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "UI-2",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

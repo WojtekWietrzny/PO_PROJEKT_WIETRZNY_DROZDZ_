@@ -89,14 +89,7 @@ public abstract class AbstractWorldMap implements WorldMap{
     }
 
     public void advanceAnimals(){
-        for (Animal animal : this.animals){
-            Vector2d positionToCheck = animal.wantToMove();
-            if (canMoveTo(positionToCheck)){
-                animal.setPosition(positionToCheck);
-
-            }
-        }
-        notifyObservers();
+        ;
     }
 
     public boolean canMoveTo(Vector2d position){
@@ -256,6 +249,14 @@ public abstract class AbstractWorldMap implements WorldMap{
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void move(Animal animal, Vector2d newPosition){
+        Vector2d oldPosition = animal.getPosition();
+        this.elements.get(oldPosition).removeAnimal(animal);
+        animal.setPosition(newPosition);
+        this.elements.get(newPosition).addAnimal(animal);
     }
 
     public String toString() {
