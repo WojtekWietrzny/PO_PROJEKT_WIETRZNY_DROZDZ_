@@ -7,7 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/resources" type="java-resource" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.8.1">

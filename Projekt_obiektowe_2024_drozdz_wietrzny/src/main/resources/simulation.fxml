@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            minHeight="550.0" minWidth="850.0" stylesheets="simulation.css"
+            fx:controller="agh.ics.oop.SimulationPresenter"
+>
+
+
+    <top> <TextField fx:id="moveListTextField" promptText="Enter directions" /></top>
+
+    <GridPane fx:id="mapGrid" gridLinesVisible="true" />
+    <center>
+
+
+    </center>
+    <bottom>
+        <VBox>
+            <HBox HBox.hgrow="ALWAYS">
+                <Label fx:id="moveDescriptionLabel" text="Here the moves will be shown" alignment="CENTER" textAlignment="CENTER" />
+                <Button fx:id="startButton" text="Start" onAction="#onSimulationStartClicked" textAlignment="CENTER"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

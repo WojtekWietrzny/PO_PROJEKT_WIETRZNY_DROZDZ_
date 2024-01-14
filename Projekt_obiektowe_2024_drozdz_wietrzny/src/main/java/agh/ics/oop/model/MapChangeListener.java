@@ -3,6 +3,6 @@ package agh.ics.oop.model;
 @FunctionalInterface
 public interface MapChangeListener {
 
-    void mapChanged(WorldMap worldMap);
+    void mapChanged(AbstractWorldMap worldMap);
 }
 

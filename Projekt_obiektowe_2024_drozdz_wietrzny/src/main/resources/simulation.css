@@ -1,0 +1,19 @@
+Hbox{
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-spacing: 8;
+}
+Vbox{
+    -fx-spacing: 16;
+    -fx-padding: 16;
+}
+
+.button{
+    -fx-pref-width: 128;
+    -fx-pref-height: 32;
+    -fx-start-margin: 32;
+}
+GridPane{
+    -fx-grid-lines-visible: true;
+    -fx-padding: 50;
+}

@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da48f79f-943e-4e40-b7f7-2d57d55e7759" name="Changes" comment="readParameters class">
+    <list default="true" id="da48f79f-943e-4e40-b7f7-2d57d55e7759" name="Changes" comment="Simulation working based on args []">
       <change beforePath="$PROJECT_DIR$/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PO_PROJEKT_WIETRZNY_DROZDZ_.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_01_45_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_01_45__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/ReadParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/ReadParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SetupParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SetupParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SimulationApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SimulationApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/MapChangeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/resources/setup.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/resources/setup.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/SetupParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/SetupParameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/Simulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/Simulation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/World.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,21 +62,25 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "UI-2",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;UI-2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wojci/Git repositories/PO_PROJEKT_WIETRZNY_DROZDZ_/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wojci\Git repositories\PO_PROJEKT_WIETRZNY_DROZDZ_\Projekt_obiektowe_2024_drozdz_wietrzny\src\main\resources" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="agh.ics.oop" />
     </key>
@@ -84,7 +89,7 @@
     <configuration name="World" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="agh.ics.oop.World" />
       <module name="PO_PROJEKT_WIETRZNY_DROZDZ_" />
-      <option name="PROGRAM_PARAMETERS" value="BasicConfiguration SphereMap CompletePredestination 10 10 20 0 10 10 5 3 1 4 8" />
+      <option name="PROGRAM_PARAMETERS" value="BasicConfiguration2 SphereMap CompletePredestination 10 10 20 5 10 10 5 3 1 4 8" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="agh.ics.oop.*" />
@@ -184,7 +189,7 @@
       <updated>1704390828714</updated>
       <workItem from="1704390829717" duration="663000" />
       <workItem from="1705165313026" duration="22477000" />
-      <workItem from="1705233359597" duration="5918000" />
+      <workItem from="1705233359597" duration="8609000" />
     </task>
     <task id="LOCAL-00001" summary="kolejne zmiany">
       <option name="closed" value="true" />
@@ -290,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705193792859</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Simulation working based on args []">
+      <option name="closed" value="true" />
+      <created>1705246124495</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705246124495</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +333,8 @@
     <MESSAGE value="fixed frame" />
     <MESSAGE value="setupParameters class" />
     <MESSAGE value="readParameters class" />
-    <option name="LAST_COMMIT_MESSAGE" value="readParameters class" />
+    <MESSAGE value="Simulation working based on args []" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simulation working based on args []" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
