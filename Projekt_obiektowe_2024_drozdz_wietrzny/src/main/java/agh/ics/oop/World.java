@@ -17,12 +17,11 @@ public class World {
 
         int numberOfSimulations = 1000;
         ArrayList<Simulation> simulations = new ArrayList<>(numberOfSimulations);
-        ConsoleMapDisplay consoleMapDisplay = new ConsoleMapDisplay();
         for (int i = 0; i < numberOfSimulations; i++) {
-            SimulationParameters parameters = new SimulationParameters(MapType.SphereMap, BehaviourType.CompletePredestination,
+            SimulationParameters parameters = new SimulationParameters(10,10,MapType.SphereMap, BehaviourType.CompletePredestination,
                     10, 0, 10, 10, 5, 3,
                     1, 3, 7);
-            Simulation simulation = new Simulation(10, 10, parameters);
+            Simulation simulation = new Simulation(parameters);
             simulations.add(simulation);
         }
 
