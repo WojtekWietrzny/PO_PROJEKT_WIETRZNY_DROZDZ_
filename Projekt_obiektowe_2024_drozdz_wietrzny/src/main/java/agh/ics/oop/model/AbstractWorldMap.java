@@ -39,9 +39,6 @@ public abstract class AbstractWorldMap implements WorldMap{
         //emptyPositionsPreferred = allPositions.subList(0, (int) Math.round(0.2*width*height));
         //emptyPositionsNotPreferred = allPositions.subList((int) Math.round(0.2*width*height), allPositions.size());
 
-        for(Vector2d position : emptyPositionsPreferred){
-            this.elements.get(position).setJungle();
-        }
 
         for(int i = 0; i < (int) Math.round(0.2*width*height);i++){
             Vector2d position = allPositions.get(i);
@@ -50,6 +47,9 @@ public abstract class AbstractWorldMap implements WorldMap{
         for(int j = (int) Math.round(0.2*width*height); j < allPositions.size();j++){
             Vector2d position = allPositions.get(j);
             emptyPositionsNotPreferred.add(position);
+        }
+        for(Vector2d position : emptyPositionsPreferred){
+            this.elements.get(position).setJungle();
         }
 
     }

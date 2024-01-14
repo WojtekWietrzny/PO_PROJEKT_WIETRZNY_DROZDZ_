@@ -5,18 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da48f79f-943e-4e40-b7f7-2d57d55e7759" name="Changes" comment="readParameters class">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/SphereWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/TunnelWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/WorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/SetupParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/SetupParameters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/Simulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/Simulation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/World.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PO_PROJEKT_WIETRZNY_DROZDZ_/agh/ics/oop/model/ConsoleMapDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_14_14__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02_[Changes]/World.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_02__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26_[Changes]/AbstractWorldMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_18_26__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/AbstractWorldMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/Animal$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/Animal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_01_2024_19_16__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SimulationEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/SimulationEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projekt_obiektowe_2024_drozdz_wietrzny/src/main/java/agh/ics/oop/model/ConsoleMapDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="UI-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,20 +68,20 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="agh.ics.oop" />
