@@ -251,7 +251,6 @@ public abstract class AbstractWorldMap implements WorldMap{
         return id;
     }
 
-    @Override
     public void move(Animal animal, Vector2d newPosition){
         Vector2d oldPosition = animal.getPosition();
         this.elements.get(oldPosition).removeAnimal(animal);

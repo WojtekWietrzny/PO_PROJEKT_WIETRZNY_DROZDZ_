@@ -24,9 +24,9 @@ public class Animal implements WorldElement {
         return switch(orientation){
             case NORTH -> "↑";
             case NORTHEAST -> "↗";
-            case EAST -> "↓";
+            case EAST -> "→";
             case SOUTHEAST -> "↘";
-            case SOUTH -> "→";
+            case SOUTH -> "↓";
             case SOUTHWEST -> "↙";
             case WEST -> "←";
             case NORTHWEST -> "↖";
