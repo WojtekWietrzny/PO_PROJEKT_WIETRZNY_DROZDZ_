@@ -90,4 +90,21 @@ public class MapVisualizer {
             return FRAME_SEGMENT;
         }
     }
+    public String drawObject(Vector2d position){
+        MapCell cell = map.getElement(position);
+        if(cell == null){
+            return " ";
+        }
+        else{
+            if (!cell.getAnimals().isEmpty()) {
+                return cell.getFirstAnimal().toString();
+            } else if (cell.isGrassPresent()) {
+                return "*" ;
+            } else if (cell.isJungle()) {
+                return "J" ;
+            } else {
+                return " ";
+            }
+        }
+    }
 }

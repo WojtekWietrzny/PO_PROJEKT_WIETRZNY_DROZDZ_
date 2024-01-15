@@ -35,6 +35,10 @@ public class Simulation implements Runnable{
         this.worldMap.growGrass(simulationParameters.startingPlantAmount());
     }
 
+    public AbstractWorldMap getWorldMap() {
+        return worldMap;
+    }
+
     @Override
     public void run() {
         while (this.worldMap.getAnimalsQuantity() > 0) {

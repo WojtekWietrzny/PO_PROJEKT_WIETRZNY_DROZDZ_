@@ -1,6 +1,6 @@
-package agh.ics.oop.model.enums;
+    package agh.ics.oop.model.enums;
 
-public enum MapType {
-    TunnelMap,
-    SphereMap
-}
+    public enum MapType {
+        TunnelMap,
+        SphereMap
+    }
