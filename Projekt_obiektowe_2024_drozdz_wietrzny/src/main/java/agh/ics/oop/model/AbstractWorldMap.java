@@ -157,6 +157,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             if (this.elements.get(position).isGrassPresent()){
                 this.elements.get(position).eatGrass();
                 animal.addEnergy(this.grassNutritionalValue);
+                animal.increaseGrassEaten();
                 this.totalAnimalEnergy += this.grassNutritionalValue;
                 if(this.elements.get(position).isJungle()){
                     emptyPositionsPreferred.add(position);

@@ -10,6 +10,7 @@ public class Animal implements WorldElement {
     private int energy;
     private int age = 0;
     private int childCount = 0;
+    private int amountOfGrassEaten = 0;
 
     public Animal(WorldMap map){
         this.orientation = MapDirection.NORTH;
@@ -72,6 +73,12 @@ public class Animal implements WorldElement {
     }
     public void increaseChildCount(){
         this.childCount += 1;
+    }
+    public int getAmountOfGrassEaten(){
+        return this.amountOfGrassEaten;
+    }
+    public void increaseGrassEaten(){
+        this.amountOfGrassEaten += 1;
     }
     public void age(){
         this.age += 1;
