@@ -40,6 +40,7 @@ public class Simulation implements Runnable{
         while (this.worldMap.getAnimalsQuantity() > 0) {
             this.worldMap.reduceAnimalEnergy();
             this.worldMap.removeDead();
+            this.worldMap.ageAnimals();
             this.worldMap.advanceAnimals();
             this.worldMap.eat();
             this.worldMap.reproduce();

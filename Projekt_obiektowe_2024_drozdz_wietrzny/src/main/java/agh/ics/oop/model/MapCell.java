@@ -76,5 +76,11 @@ public class MapCell {
         removeAnimal(animal);
         upDeathCounter();
     }
+    public boolean isOccupied(){
+        if (!animals.isEmpty()){
+            return true;
+        }
+        return isGrassPresent();
+    }
     public ArrayList<Animal> getAnimals(){ return this.animals; }
 }

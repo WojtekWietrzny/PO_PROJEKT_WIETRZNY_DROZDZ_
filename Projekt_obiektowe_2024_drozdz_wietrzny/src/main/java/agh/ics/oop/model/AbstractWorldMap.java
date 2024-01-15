@@ -16,6 +16,9 @@ public abstract class AbstractWorldMap implements WorldMap{
     protected int animalsQuantity = 0; // Czy nie wystarczy nam po prostu animals.size()?,
     // nie bo to się przydaje potem przy statystykach, żeby trackować ile się przewinęło w ogóle przez program
     //ale faktycznie do kodu w pętli lepiej używać size
+    protected int totalAnimalEnergy = 0;
+    protected int totalDeadAnimalAge = 0;
+    protected int deathCount = 0;
     private final int energyToReproduce = 1;
     private final int energyConsumedByReproduction = 2;
     private final int grassNutritionalValue = 3;
@@ -99,7 +102,8 @@ public abstract class AbstractWorldMap implements WorldMap{
     public void place(Animal animal) {
         if(canMoveTo(animal.getPosition())){
             elements.get(animal.getPosition()).addAnimal(animal);
-            animalsQuantity += 1;
+            this.animalsQuantity += 1;
+            this.totalAnimalEnergy += animal.getEnergy();
             animals.add(animal);
         }
     }
@@ -112,12 +116,23 @@ public abstract class AbstractWorldMap implements WorldMap{
     public void reduceAnimalEnergy(){
         for (Animal animal : this.animals){
             animal.reduceEnergy(1);
+            if (animal.getEnergy() >= 0){
+                this.totalAnimalEnergy -= 1;
+            }
+        }
+    }
+
+    public void ageAnimals(){
+        for (Animal animal : this.animals){
+            animal.age();
         }
     }
 
     public void setAnimalEnergy(int energy){
+        this.totalAnimalEnergy = 0;
         for (Animal animal : this.animals){
             animal.setEnergy(energy);
+            this.totalAnimalEnergy += energy;
         }
     }
 
@@ -132,6 +147,8 @@ public abstract class AbstractWorldMap implements WorldMap{
         for (Animal animal : animalsToRemove){
             this.animals.remove(animal);
             this.animalsQuantity -= 1;
+            this.deathCount += 1;
+            this.totalDeadAnimalAge += animal.getAge();
         }
     }
     public void eat(){
@@ -140,6 +157,7 @@ public abstract class AbstractWorldMap implements WorldMap{
             if (this.elements.get(position).isGrassPresent()){
                 this.elements.get(position).eatGrass();
                 animal.addEnergy(this.grassNutritionalValue);
+                this.totalAnimalEnergy += this.grassNutritionalValue;
                 if(this.elements.get(position).isJungle()){
                     emptyPositionsPreferred.add(position);
                 }
@@ -169,7 +187,10 @@ public abstract class AbstractWorldMap implements WorldMap{
                     continue;
                 }
                 Animal child = potentialParent1.createChild(potentialParent2);
+                potentialParent1.reduceEnergy(this.energyToReproduce);
+                potentialParent2.reduceEnergy(this.energyToReproduce);
                 children.add(child);
+                this.totalAnimalEnergy = this.totalAnimalEnergy - 2*this.energyToReproduce + child.getEnergy();
             }
         }
 
@@ -265,6 +286,32 @@ public abstract class AbstractWorldMap implements WorldMap{
     public int getGrassCount(){
         int positionsAmount = bounds.upperRight().getX() * bounds.upperRight().getY();
         return positionsAmount  - emptyPositionsPreferred.size() - emptyPositionsNotPreferred.size();
+    }
+
+    public int getEmptyPositionCount(){
+        int answ = 0;
+        for(MapCell mapCell : this.elements.values()){
+            if (!mapCell.isOccupied()){
+                answ += 1;
+            }
+        }
+        return answ;
+    }
+
+    public float getAverageAnimalEnergy(){
+        return (float) this.totalAnimalEnergy /this.animalsQuantity;
+    }
+
+    public float getAverageLifespan(){
+        return (float) this.totalDeadAnimalAge / this.deathCount;
+    }
+
+    public float getAverageChildCount(){
+        int totalChildren = 0;
+        for (Animal animal  : this.animals){
+            totalChildren += animal.getChildCount();
+        }
+        return (float) totalChildren / this.animalsQuantity;
     }
 
     public String toString() {
