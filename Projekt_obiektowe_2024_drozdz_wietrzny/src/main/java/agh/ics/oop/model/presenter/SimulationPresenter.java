@@ -41,7 +41,7 @@ public class SimulationPresenter implements MapChangeListener {
     }
 
     @Override
-    public void mapChanged(WorldMap worldMap) {
+    public void mapChanged(AbstractWorldMap worldMap) {
         Platform.runLater(() -> {
             drawMap(worldMap);
         });
@@ -64,7 +64,7 @@ public class SimulationPresenter implements MapChangeListener {
     }*/
 
 
-    public void drawMap(WorldMap worldMap) {
+    public void drawMap(AbstractWorldMap worldMap) {
         clearGrid();
 
 
@@ -108,7 +108,7 @@ public class SimulationPresenter implements MapChangeListener {
             SimulationApp.startSimulation(simulationCounter);
         }
         else{
-            worldMap = getWorldMap();
+
             String setup = moveListTextField.getText();
 
             String[] setupArray = setup.split(" ");
@@ -116,6 +116,8 @@ public class SimulationPresenter implements MapChangeListener {
             SetupParameters parameters = new SetupParameters(setupArray);
             Simulation simulation = new Simulation(parameters);
             simulations.add(simulation);
+            worldMap = simulation.getWorldMap();
+            this.setWorldMap(worldMap);
             SimulationEngine simulationEngine = new SimulationEngine(simulations);
             Thread engineThread = new Thread(simulationEngine);
             engineThread.start();

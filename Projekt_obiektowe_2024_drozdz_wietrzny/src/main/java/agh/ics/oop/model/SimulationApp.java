@@ -23,11 +23,7 @@ public class SimulationApp extends Application {
         SimulationPresenter presenter = loader.getController();
 
 
-        GrassField worldMap = new GrassField(10);
         configureStage(primaryStage, viewRoot);
-
-        presenter.setWorldMap(worldMap);
-        worldMap.addObserver(presenter);
 
         primaryStage.show();
 
@@ -48,9 +44,6 @@ public class SimulationApp extends Application {
             simulationStage.setScene(new Scene(simulationRoot, 400, 300));
             simulationStage.show();
             SimulationPresenter presenter = loader.getController();
-            GrassField worldMap = new GrassField(10);
-            presenter.setWorldMap(worldMap);
-            worldMap.addObserver(presenter);
 
 
             // Increment the simulation counter for the next simulation
